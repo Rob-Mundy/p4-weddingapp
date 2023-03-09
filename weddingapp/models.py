@@ -15,6 +15,9 @@ class Event(models.Model):
     # declined_attendees = models.IntegerField()
     # unconfirmed_attendeed = models.IntegerField()
 
+    def __str__(self):
+        return self.event_name
+
 
 STATUS = ((0, "Draft"), (1, "Invited"))
 IS_ATTENDING_CHOICES = [(False, 'No'), (True, 'Yes')]
@@ -49,3 +52,12 @@ class Guest(models.Model):
 
     def __str__(self):
         return self.guest_name
+
+
+class Invitation(models.Model):
+    invitation_name = models.CharField(max_length=200, unique=True)
+    invitation_image = CloudinaryField('image', default='placeholder')
+    invitation_message = models.TextField()
+    event = models.ForeignKey(
+        Event, on_delete=models.CASCADE, related_name='events'
+        )
