@@ -1,0 +1,52 @@
+body {
+    background-color: #F9FAFC;
+    font-family: 'Figtree', sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Merriweather', sans-serif;
+}
+
+.navbar-brand {
+    font-family: Merriweather, sans-serif;
+}
+
+.brand {
+    font-family: Merriweather, sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #4A4A4F;
+}
+
+.light-bg {
+    background-color: #fff;
+}
+
+.dark-bg {
+    background-color: #445261;
+}
+
+.main-bg {
+    background-color: #F9FAFC;
+}
+
+.card {
+    border: none;
+    background-color: transparent;
+}
+
+.image-container {
+    position: relative;
+}
+
+.image-flash {
+    position: absolute;
+    bottom: 5%;
+    min-width: 30%;
+    left: -2px;
+    background-color: #23BBBB;
+} 
+
+@media (min-width: 992px) {
+  .rounded-lg-3 { border-radius: .3rem; }
+}

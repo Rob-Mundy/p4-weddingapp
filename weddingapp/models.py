@@ -3,8 +3,6 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from multiselectfield import MultiSelectField
 
-# Create your models here.
-
 
 class Event(models.Model):
     event_name = models.CharField(max_length=200, unique=True)
@@ -32,19 +30,19 @@ class Guest(models.Model):
     guest_name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     email = models.EmailField()
-    is_attending = models.BooleanField(
-        "Attending?", default='', choices=IS_ATTENDING_CHOICES
-    )
-    message = models.TextField(blank=True)
-    dietary_requirements = MultiSelectField(
-        choices=DIETARY_REQUIREMENT_CHOICES
-        )
-    plus_one_attending = models.BooleanField(
-        "Attending?", default='', choices=PLUS_ONE_CHOICES
-    )
     event = models.ForeignKey(
         Event, on_delete=models.CASCADE, related_name='guests'
         )
+    attending = models.BooleanField(
+        "Attending?", default='', choices=IS_ATTENDING_CHOICES, null=True
+    )
+    plus_one_attending = models.BooleanField(
+        "Plus one?", default=True, choices=PLUS_ONE_CHOICES
+    )
+    dietary_requirements = MultiSelectField(
+        choices=DIETARY_REQUIREMENT_CHOICES
+        )
+    message_to_couple = models.TextField(blank=True)
     invited = models.IntegerField(choices=STATUS, default=0)
 
     class Meta:
