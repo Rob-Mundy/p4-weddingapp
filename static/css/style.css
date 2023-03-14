@@ -51,6 +51,14 @@ h1, h2, h3 {
       -khtml-box-shadow: 10px 10px 5px #ccc;
 }
 
+a {
+    color: #6b5668;
+}
+
+a:hover {
+    color: #b48eae; 
+}
+
 /* .card {
     border: none;
     background-color: transparent;
