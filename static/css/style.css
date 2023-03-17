@@ -43,6 +43,10 @@ h1, h2, h3 {
     background-color: #6b5668;
 }
 
+.btn-outline-secondary:hover {
+    background-color: #3c433f
+}
+
 #hero-couple {
     border-radius: 5%;
     box-shadow: 10px 10px 5px #ccc;
