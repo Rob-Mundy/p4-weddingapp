@@ -10,7 +10,7 @@ class Event(models.Model):
     event_time = models.TimeField()
     created_on = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="events"
+        User, on_delete=models.CASCADE, related_name="events", null=True
     )
     # confirmed_attendees = models.IntegerField()
     # declined_attendees = models.IntegerField()
