@@ -46,7 +46,7 @@ class Guest(models.Model):
     invited = models.IntegerField(choices=STATUS, default=0)
 
     class Meta:
-        ordering = ['-guest_name']
+        ordering = ['guest_name']
 
     def __str__(self):
         return self.guest_name
