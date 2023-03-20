@@ -10,9 +10,13 @@ class Event(models.Model):
     event_date = models.DateField()
     event_time = models.TimeField()
     created_on = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(
+    user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True
         )
+    # user = models.ForeignKey(
+    #     settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True
+    #     )
+
     # confirmed_attendees = models.IntegerField()
     # declined_attendees = models.IntegerField()
     # unconfirmed_attendeed = models.IntegerField()

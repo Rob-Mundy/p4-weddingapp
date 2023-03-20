@@ -10,10 +10,14 @@ class EventList(generic.ListView):
     queryset = Event.objects.order_by('event_name')
     template_name = 'index.html'
 
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_authenticated:
+            return Event.objects.filter(user=user)
+
 
 class GuestList(generic.ListView):
     model = Guest
-    # my_guests = Guest.objects.filter(user=User.objects.get(username=request.user))
     queryset = Guest.objects.order_by('guest_name')
     template_name = 'index.html'
 

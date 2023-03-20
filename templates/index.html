@@ -6,21 +6,37 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-8 mt-3">
+
+    <!-- Event Column -->
+    <div class="col-6 mt-3">
       <div class="row">
 
-        <!-- <div class="list-group w-auto" style="min-width: 400px">
-          {% for event in event_list %}
-          <h3 class="text-center">{{ event.event_name }}</h3>
-          {% endfor %}
+        <!-- <div class="list-group w-auto" style="min-width: 300px">
+          <h3 class="text-center">{{ user.event.event_name }}</h3>
           <hr class="mt-0">
-
         </div> -->
+
+        <div class="card mb-3">
+
+          <div class="card-body">
+            <img class="card-img-top" src="https://res.cloudinary.com/dkdheuvab/image/upload/v1679333275/banner_Screen-Shot-2019-07-16-at-10.31.03_pn4xzs.png" alt="Married couple in field banner image">
+            <h3 class="card-title">{{ user.event.event_name }}</h3>
+            <p class="card-text">{{ user.event.event_date }} at {{ user.event.event_time }}</p>
+
+          </div>
+
+        </div>
+
       </div>
 
     </div>
+
+    <!-- Spacing Column -->
+    <div class="col-2 mt-3">
+    </div>
+
     <!-- Guestlist Column -->
-    <div class="col-4 mt-3">
+    <div class="col-4 mt-3 mb-3">
       <div class="row">
 
         <div class="list-group w-auto" style="min-width: 200px">
