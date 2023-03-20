@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 from cloudinary.models import CloudinaryField
 from multiselectfield import MultiSelectField
 
@@ -9,9 +10,9 @@ class Event(models.Model):
     event_date = models.DateField()
     event_time = models.TimeField()
     created_on = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="events", null=True
-    )
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True
+        )
     # confirmed_attendees = models.IntegerField()
     # declined_attendees = models.IntegerField()
     # unconfirmed_attendeed = models.IntegerField()
@@ -47,6 +48,9 @@ class Guest(models.Model):
         )
     message_to_couple = models.TextField(blank=True)
     invited = models.IntegerField(choices=STATUS, default=0)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True
+        )
 
     class Meta:
         ordering = ['guest_name']
