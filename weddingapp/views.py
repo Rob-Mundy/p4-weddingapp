@@ -28,3 +28,15 @@ class GuestList(generic.ListView):
         user = self.request.user
         if user.is_authenticated:
             return Guest.objects.filter(user=user)
+
+
+def eventView(request):
+    form = createEventForm()
+    if request.method == "POST":
+        form = createEventForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return render(request, 'index.html', {'form_data': form.cleaned_data})
+        else:
+            print('ERROR')
+    return render(request, 'index.html', {'form': form})
