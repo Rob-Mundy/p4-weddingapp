@@ -5,6 +5,7 @@ from django_summernote.admin import SummernoteModelAdmin
 
 admin.site.register(Event)
 
+
 @admin.register(Guest)
 class GuestAdmin(admin.ModelAdmin):
     list_display = ('guest_name', 'invited', 'attending', 'plus_one_attending')

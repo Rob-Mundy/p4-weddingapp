@@ -3,6 +3,9 @@ from django.views import generic
 from .models import Guest
 from .models import Event
 from .models import User
+from django.core.mail import send_mail
+from django.conf import settings
+from .forms import createEventForm
 
 
 class EventList(generic.ListView):
