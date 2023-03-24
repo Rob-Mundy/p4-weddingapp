@@ -37,8 +37,11 @@ def create_event(request):
     if request.method == "POST":
         form = createEventForm(request.POST)
         if form.is_valid():
+            event_list = form.save(commit=False)
+            event_list.user = request.user
+            event_list.save()
             form.save(commit=True)
-            return redirect('create_event.html')
+            return redirect('/')
     else:
         form = createEventForm()
     return render(request, 'create_event.html', {'form': form})

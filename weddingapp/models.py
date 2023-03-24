@@ -11,7 +11,7 @@ class Event(models.Model):
     event_time = models.TimeField()
     created_on = models.DateTimeField(auto_now_add=True)
     user = models.OneToOneField(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=False, blank=False
         )
     # user = models.ForeignKey(
     #     settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True
