@@ -1,8 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
-from .models import Guest
-from .models import Event
-from .models import User
+from .models import Guest, Event, User
 from django.core.mail import send_mail
 from django.conf import settings
 from .forms import createEventForm
@@ -30,13 +28,17 @@ class GuestList(generic.ListView):
             return Guest.objects.filter(user=user)
 
 
-def eventView(request):
+# def index(request):
+#     form = createEventForm()
+#     return render(request, 'index.html', {"form": form.as_p})
+
+def create_event(request):
     form = createEventForm()
     if request.method == "POST":
         form = createEventForm(request.POST)
         if form.is_valid():
             form.save(commit=True)
-            return render(request, 'index.html', {'form_data': form.cleaned_data})
-        else:
-            print('ERROR')
-    return render(request, 'index.html', {'form': form})
+            return redirect('create_event.html')
+    else:
+        form = createEventForm()
+    return render(request, 'create_event.html', {'form': form})

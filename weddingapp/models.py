@@ -6,7 +6,7 @@ from multiselectfield import MultiSelectField
 
 
 class Event(models.Model):
-    event_name = models.CharField(max_length=200, unique=True)
+    event_name = models.CharField(max_length=200)
     event_date = models.DateField()
     event_time = models.TimeField()
     created_on = models.DateTimeField(auto_now_add=True)
