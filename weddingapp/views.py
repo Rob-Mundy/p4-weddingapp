@@ -31,16 +31,9 @@ class GuestList(generic.ListView):
         return user.guests.all()
 
 
-# def login_success(request):
-#     """
-#     Redirects users based on whether have created an event
-#     """
-#     if user.event.event_name:
-#         # user has created an event
-#         return redirect('/')
-#     else:
-#         return redirect('/create_event/')
-
+# def index(request):
+#     form = createEventForm()
+#     return render(request, 'index.html', {"form": form.as_p})
 
 def create_event(request):
     form = createEventForm()
