@@ -18,10 +18,10 @@
           Create Event
           <form method="post" style="margin-top: 1.3em;" action="{% url 'create_event' %}">
             {% csrf_token %}
-            {{ form|crispy }} 
+            {{ form|crispy }}
             <button type="submit" class="btn btn-signup btn-lg">Create</button>
           </form>
-          
+
           {% else %}
 
           <div class="card-body">
@@ -34,12 +34,10 @@
           </div>
 
           {% endif %}
+
         </div>
-
       </div>
-
     </div>
-
   </div>
 </div>
 

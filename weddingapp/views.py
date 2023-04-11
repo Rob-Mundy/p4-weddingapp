@@ -4,6 +4,7 @@ from .models import Guest, Event, User
 from django.core.mail import send_mail
 from django.conf import settings
 from .forms import createEventForm
+from django.views.decorators.csrf import csrf_exempt
 
 
 class EventList(generic.ListView):
@@ -20,12 +21,14 @@ class EventList(generic.ListView):
 class GuestList(generic.ListView):
     model = Guest
     queryset = Guest.objects.order_by('guest_name')
-    template_name = 'index.html'
+    template_name = 'guests.html'
+    context_object_name = 'guests'
 
     def get_queryset(self):
         user = self.request.user
-        if user.is_authenticated:
-            return Guest.objects.filter(user=user)
+        # if user.is_authenticated:
+        #     return Guest.objects.filter(user=user)
+        return user.guests.all()
 
 
 # def login_success(request):
@@ -52,3 +55,21 @@ def create_event(request):
     else:
         form = createEventForm()
     return render(request, 'create_event.html', {'form': form})
+
+
+@csrf_exempt
+def add_guest(request):
+    name = request.POST.get('guestname')
+    email = request.POST.get('guestemail')
+    # event = request.POST.get('guestevent')
+    guest = Guest.objects.create(guest_name=name)
+    guestmail = Guest.objects.create(email=email)
+    # guestevent = Guest.objects.create(event=event)
+    
+    # add the guest to the user's list
+    request.user.guests.add(guest)
+    # request.user.guests.add(guestmail) #moved to separate line
+
+    # return template with all of the user's guests
+    guests = request.user.guests.all()
+    return render(request, 'partials/guestlist.html', {'guests': guests})

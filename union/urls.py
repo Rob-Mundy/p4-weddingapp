@@ -16,11 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from weddingapp import views
+from weddingapp.views import create_event, add_guest
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
     path('', include('weddingapp.urls'), name='weddingapp_urls'),
     path('accounts/', include('allauth.urls')),
-    # path(r'login_success/', views.login_success, name='login_success'),
+    # path('guests/', views.GuestList.as_view(), name='guestlist'),
 ]
+
+# htmx_urlpatterns = [
+#     path('add-guest/', views.add_guest, name='add-guest'),
+# ]

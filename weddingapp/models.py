@@ -11,7 +11,7 @@ class Event(models.Model):
     event_time = models.TimeField()
     created_on = models.DateTimeField(auto_now_add=True)
     user = models.OneToOneField(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=False, blank=False
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True, default=1
         )
     # user = models.ForeignKey(
     #     settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True
@@ -35,12 +35,12 @@ PLUS_ONE_CHOICES = [(False, 'No'), (True, 'Yes')]
 
 
 class Guest(models.Model):
-    guest_name = models.CharField(max_length=200, unique=True)
+    guest_name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
     email = models.EmailField()
-    event = models.ForeignKey(
-        Event, on_delete=models.CASCADE, related_name='guests'
-        )
+    # event = models.ForeignKey(
+    #     Event, on_delete=models.CASCADE, related_name='guests'
+    #     )
     attending = models.BooleanField(
         "Attending?", default='', choices=IS_ATTENDING_CHOICES, null=True
     )
@@ -53,8 +53,9 @@ class Guest(models.Model):
     message_to_couple = models.TextField(blank=True)
     invited = models.IntegerField(choices=STATUS, default=0)
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True
-        )
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True, default=1,
+        related_name="guests"
+        ) # user.guests.all()
 
     class Meta:
         ordering = ['guest_name']
@@ -63,10 +64,10 @@ class Guest(models.Model):
         return self.guest_name
 
 
-class Invitation(models.Model):
-    invitation_name = models.CharField(max_length=200, unique=True)
-    invitation_image = CloudinaryField('image', default='placeholder')
-    invitation_message = models.TextField()
-    event = models.ForeignKey(
-        Event, on_delete=models.CASCADE, related_name='events'
-        )
+# class Invitation(models.Model):
+#     invitation_name = models.CharField(max_length=200, unique=True)
+#     invitation_image = CloudinaryField('image', default='placeholder')
+#     invitation_message = models.TextField()
+#     user = models.OneToOneField(
+#         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=False, blank=False, default=1
+#         )
