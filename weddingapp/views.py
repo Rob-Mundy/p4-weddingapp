@@ -4,7 +4,6 @@ from .models import Guest, Event, User
 from django.core.mail import send_mail
 from django.conf import settings
 from .forms import createEventForm
-from django.views.decorators.csrf import csrf_exempt
 
 
 class EventList(generic.ListView):
@@ -15,7 +14,8 @@ class EventList(generic.ListView):
     def get_queryset(self):
         user = self.request.user
         if user.is_authenticated:
-            return Event.objects.filter(user=user)
+            # return Event.objects.filter(user=user)
+            return user.events.all()
 
 
 class GuestList(generic.ListView):
@@ -26,9 +26,9 @@ class GuestList(generic.ListView):
 
     def get_queryset(self):
         user = self.request.user
-        # if user.is_authenticated:
-        #     return Guest.objects.filter(user=user)
-        return user.guests.all()
+        if user.is_authenticated:
+            return Guest.objects.filter(user=user)
+        # return user.guests.all()
 
 
 # def index(request):
@@ -50,19 +50,18 @@ def create_event(request):
     return render(request, 'create_event.html', {'form': form})
 
 
-@csrf_exempt
-def add_guest(request):
-    name = request.POST.get('guestname')
-    email = request.POST.get('guestemail')
-    # event = request.POST.get('guestevent')
-    guest = Guest.objects.create(guest_name=name)
-    guestmail = Guest.objects.create(email=email)
-    # guestevent = Guest.objects.create(event=event)
-    
-    # add the guest to the user's list
-    request.user.guests.add(guest)
-    # request.user.guests.add(guestmail) #moved to separate line
+# def add_guest(request):
+#     name = request.POST.get('guestname')
+#     email = request.POST.get('guestemail')
+#     # event = request.POST.get('guestevent')
+#     guest = Guest.objects.create(guest_name=name)
+#     guestmail = Guest.objects.create(email=email)
+#     # guestevent = Guest.objects.create(event=event)
 
-    # return template with all of the user's guests
-    guests = request.user.guests.all()
-    return render(request, 'partials/guestlist.html', {'guests': guests})
+#     # add the guest to the user's list
+#     request.user.guests.add(guest)
+#     # request.user.guests.add(guestmail) #moved to separate line
+
+#     # return template with all of the user's guests
+#     guests = request.user.guests.all()
+#     return render(request, 'partials/guestlist.html', {'guests': guests})

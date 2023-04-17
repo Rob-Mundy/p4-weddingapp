@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Event
+from .models import Event, Guest
 
 
 class createEventForm(ModelForm):
@@ -8,7 +8,7 @@ class createEventForm(ModelForm):
         fields = ['event_name', 'event_date', 'event_time']
 
 
-# class createGuestForm(ModelForm):
-#     class Meta:
-#         model = Guest
-#         fields = ['guest_name', 'email']
+class createGuestForm(ModelForm):
+    class Meta:
+        model = Guest
+        fields = ['guest_name', 'email']
