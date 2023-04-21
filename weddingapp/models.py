@@ -14,10 +14,6 @@ class Event(models.Model):
         User, on_delete=models.CASCADE, null=False, blank=False,
         default=int(1), related_name='events'
         )
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, null=False, blank=False,
-        default=int(1), related_name='events'
-        )
 
     # confirmed_attendees = models.IntegerField()
     # declined_attendees = models.IntegerField()

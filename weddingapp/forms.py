@@ -12,3 +12,9 @@ class createGuestForm(ModelForm):
     class Meta:
         model = Guest
         fields = ['guest_name', 'email']
+
+
+class editGuestForm(ModelForm):
+    class Meta:
+        model = Guest
+        exclude = ['user', 'slug']

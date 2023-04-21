@@ -24,7 +24,3 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     # path('guests/', views.GuestList.as_view(), name='guestlist'),
 ]
-
-# htmx_urlpatterns = [
-#     path('add-guest/', views.add_guest, name='add-guest'),
-# ]
