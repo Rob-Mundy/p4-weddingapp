@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
 from django.views import generic
 from .models import Guest, Event, User
 from django.core.mail import send_mail
 from django.conf import settings
-from .forms import createEventForm, editGuestForm
+from .forms import createEventForm, addGuestForm, editGuestForm
+from slugify import slugify
+
+import json
 
 
 class EventList(generic.ListView):
@@ -19,17 +23,113 @@ class EventList(generic.ListView):
             # return user.events.all()
 
 
-class GuestList(generic.ListView):
-    model = Guest
-    queryset = Guest.objects.order_by('guest_name')
-    template_name = 'guestlist.html'
-    context_object_name = 'guests'
+# class GuestList(generic.ListView):
+#     model = Guest
+#     queryset = Guest.objects.order_by('guest_name')
+#     template_name = 'guestlist.html'
+#     context_object_name = 'guests'
+#     form = addGuestForm()
 
-    def get_queryset(self):
+#     def get_queryset(self):
+#         user = self.request.user
+#         if user.is_authenticated:
+#             return Guest.objects.filter(user=user)
+
+
+
+# def home(req):
+#     tmpl_vars = {
+#         'all_guests': Guest.objects.reverse(),
+#         'form': addGuestForm()
+#     }
+#     return render(req, 'index.html', tmpl_vars)
+
+
+class GuestList(generic.View):
+
+    def get(self, request, *args, **kwargs):
         user = self.request.user
-        if user.is_authenticated:
-            return Guest.objects.filter(user=user)
-        # return user.guests.all()
+        queryset = Guest.objects.filter(user=user)
+        context_object_name = 'guests'
+        form = addGuestForm(request.POST or None)
+
+        return render(
+            request,
+            "guestlist.html",
+            {
+                "form": form,
+                "guests": queryset
+            }
+        )
+    # This is where you left off
+    def post(self, request, *args, **kwargs):
+        # user = self.request.user
+        form = addGuestForm(data=request.POST)
+        if form.is_valid():
+            guest_list = form.save(commit=False)
+            guest_list.user = request.user
+            guest_list.slug = slugify(guest_list.guest_name)
+            guest_list.save()
+            form.save(commit=True)
+            return redirect("guestlist")
+
+        return render(
+            request,
+            "guestlist.html",
+            {
+                "form": form,
+            }
+        )
+
+    # def post(self, request, *args, **kwargs):
+    #     if request.method == 'POST':
+    #         user = self.request.user
+    #         guest_name = request.POST.get('the_guest')
+    #         response_data = {}
+
+    #         guest = Guest(guest_name=guest_name, user=request.user)
+    #         guest.save()
+
+    #         response_data['result'] = 'Create post successful!'
+    #         response_data['guestpk'] = guest.pk
+    #         response_data['guest'] = guest.guest_name
+    #         # response_data['created'] = guest.created.strftime('%B %d, %Y %I:%M %p')
+    #         response_data['user'] = guest.user.username
+
+    #         return HttpResponse(
+    #             json.dumps(response_data),
+    #             content_type="application/json"
+    #         )
+    #     else:
+    #         return HttpResponse(
+    #             json.dumps({"nothing to see": "this isn't happening"}),
+    #             content_type="application/json"
+    #         )
+
+
+# def add_guest(request):
+#     if request.method == 'POST':
+#         guest_name = request.POST.get('the_guest')
+#         response_data = {}
+
+#         guest = Guest(guest_name=guest_name, user=request.user)
+#         guest.save()
+
+#         response_data['result'] = 'Create post successful!'
+#         response_data['guestpk'] = guest.pk
+#         response_data['guest'] = guest.guest_name
+#         # response_data['created'] = guest.created.strftime('%B %d, %Y %I:%M %p')
+#         response_data['user'] = guest.user.username
+
+#         return HttpResponse(
+#             json.dumps(response_data),
+#             content_type="application/json"
+#         )
+#     else:
+#         return HttpResponse(
+#             json.dumps({"nothing to see": "this isn't happening"}),
+#             content_type="application/json"
+#         )
 
 
 def create_event(request):
@@ -54,9 +154,6 @@ class GuestDetail(generic.View):
         queryset = Guest.objects.filter(user=user)
         instance = get_object_or_404(queryset, slug=slug)
         form = editGuestForm(request.POST or None, instance=instance)
-        # if form.is_valid():
-        #     form.save()
-        #     return redirect("edit_guest")
 
         return render(
             request,

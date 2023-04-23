@@ -1,0 +1,37 @@
+{% extends "base.html" %}{% block content %}
+{% load crispy_forms_tags %}
+
+<!-- {% if user.is_authenticated %} -->
+<h2>Guestlist</h2>
+<!-- The form to dynamically add guests -->
+<div class="row white">
+    <div class="columns large-12">
+        <form method="POST" id="add-guest-form" action="{% url 'add_guest' %}">
+            {% csrf_token %}
+            <div class="fieldWrapper" id="the_guest">
+                {{ form.text }}
+            </div>
+            <div id="results"></div> <!-- errors go here -->
+            <input type="submit" value="Post" class="tiny button">
+        </form>        
+    </div>
+</div>
+
+<!-- The guestlist -->
+<div class="row white">
+    <div class="columns large-12">
+        <ul id="talk">
+            {% for guest in all_guests %}
+                <li>
+                    <strong>{{ guest.guest_name }}</strong> -
+                    <em>{{ guest.email }}</em> -
+                    <span>{{ guest.attending }}</span> -
+                    <!-- <a id='delete-post-{{post.id}}'>delete me</a> -->
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<script src="/static/scripts/main.js"></script>
+{% endblock %}

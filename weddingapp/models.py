@@ -37,8 +37,8 @@ class Guest(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     email = models.EmailField()
     event = models.ForeignKey(
-        Event, on_delete=models.CASCADE, null=False, blank=False,
-        related_name='guests', default=int(1)
+        Event, on_delete=models.CASCADE, null=True, blank=True,
+        related_name='guests'
         )
     attending = models.BooleanField(
         "Attending?", default='', choices=IS_ATTENDING_CHOICES, null=True

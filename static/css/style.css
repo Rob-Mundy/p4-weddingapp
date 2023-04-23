@@ -8,6 +8,11 @@ h1, h2, h3 {
     color: #3c433f;
 }
 
+ul, ol {
+    list-style-type: none;
+    padding-left: 0;
+}
+
 .navbar-brand {
     font-family: 'Playfair Display', serif;
     font-style: italic;
