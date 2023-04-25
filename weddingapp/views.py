@@ -61,9 +61,8 @@ class GuestList(generic.View):
                 "guests": queryset
             }
         )
-    # This is where you left off
+
     def post(self, request, *args, **kwargs):
-        # user = self.request.user
         form = addGuestForm(data=request.POST)
         if form.is_valid():
             guest_list = form.save(commit=False)
@@ -80,6 +79,15 @@ class GuestList(generic.View):
                 "form": form,
             }
         )
+
+
+def delete_guest(request, pk):
+    queryset = Guest.objects.get(id=pk)
+    name = Guest.guest_name
+    if request.method == 'POST':
+        queryset.delete()
+        return redirect("guestlist")
+    return render(request, 'delete_guest.html')
 
     # def post(self, request, *args, **kwargs):
     #     if request.method == 'POST':
@@ -105,31 +113,6 @@ class GuestList(generic.View):
     #             json.dumps({"nothing to see": "this isn't happening"}),
     #             content_type="application/json"
     #         )
-
-
-# def add_guest(request):
-#     if request.method == 'POST':
-#         guest_name = request.POST.get('the_guest')
-#         response_data = {}
-
-#         guest = Guest(guest_name=guest_name, user=request.user)
-#         guest.save()
-
-#         response_data['result'] = 'Create post successful!'
-#         response_data['guestpk'] = guest.pk
-#         response_data['guest'] = guest.guest_name
-#         # response_data['created'] = guest.created.strftime('%B %d, %Y %I:%M %p')
-#         response_data['user'] = guest.user.username
-
-#         return HttpResponse(
-#             json.dumps(response_data),
-#             content_type="application/json"
-#         )
-#     else:
-#         return HttpResponse(
-#             json.dumps({"nothing to see": "this isn't happening"}),
-#             content_type="application/json"
-#         )
 
 
 def create_event(request):
