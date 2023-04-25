@@ -68,7 +68,7 @@ class GuestList(generic.View):
         if form.is_valid():
             guest_list = form.save(commit=False)
             guest_list.user = request.user
-            guest_list.slug = slugify(guest_list.guest_name)
+            guest_list.slug = slugify(str(guest_list.user.id) + '-' + guest_list.guest_name)
             guest_list.save()
             form.save(commit=True)
             return redirect("guestlist")
