@@ -33,7 +33,7 @@ PLUS_ONE_CHOICES = [(False, 'No'), (True, 'Yes')]
 
 
 class Guest(models.Model):
-    guest_name = models.CharField(max_length=200)
+    guest_name = models.CharField(max_length=200, blank=True)
     slug = models.SlugField(max_length=200, unique=True)
     email = models.EmailField()
     event = models.ForeignKey(

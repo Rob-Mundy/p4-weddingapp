@@ -1,5 +1,4 @@
 {% extends "base.html" %}{% block content %}
-{% load crispy_forms_tags %}
 
 {% if user.is_authenticated %}
 
@@ -16,17 +15,21 @@
             <img class="card-img-top"
               src="https://res.cloudinary.com/dkdheuvab/image/upload/v1679333275/banner_Screen-Shot-2019-07-16-at-10.31.03_pn4xzs.png"
               alt="Married couple in field banner image">
+
+            {% for event in events %}
+            {% if event.event_name %}
             
-            {% if user.event.event_name %}
+            <h3 class="card-title">{{ event.event_name }}</h3>
+            <p class="card-text">{{ event.event_date }} at {{ event.event_time }}</p>
             
-            <h3 class="card-title">{{ user.event.event_name }}</h3>
-            <p class="card-text">{{ user.event.event_date }} at {{ user.event.event_time }}</p>
-            
+            <a type="button" href="" class="btn btn-secondary btn-md px-4 me-md-2 mt-3">Edit Event</a>
+
             {% else %}
 
             <a type="button" href="{% url 'create_event' %}" class="btn btn-secondary btn-md px-4 me-md-2 mt-3">Create Event</a>
 
             {% endif %}
+            {% endfor %}
           </div>
         </div>
       </div>
