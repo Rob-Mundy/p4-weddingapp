@@ -1,28 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
-from .models import Guest, Event, User
+from .models import Guest, Event, User, STATUS, IS_ATTENDING_CHOICES
 from django.conf import settings
 from .forms import createEventForm, editEventForm, addGuestForm, editGuestForm
 from slugify import slugify
 from django.core.exceptions import ValidationError
 
-
-# class EventList(generic.ListView):
-
-#     def get(self, request, *args, **kwargs):
-#         user = self.request.user
-#         queryset = Event.objects.filter(user=user)
-#         context_object_name = 'events'
-#         # form = addGuestForm(request.POST or None)
-
-#         return render(
-#             request,
-#             "index.html",
-#             {
-#                 "events": queryset,
-#                 "user": user
-#             }
-#         )
 
 class EventList(generic.ListView):
     model = Event
@@ -33,7 +16,6 @@ class EventList(generic.ListView):
         user = self.request.user
         if user.is_authenticated:
             return Event.objects.filter(user=user)
-            # return Event.objects.all()[0]
 
 
 class GuestList(generic.View):
@@ -132,24 +114,6 @@ def create_event(request):
         form = createEventForm()
     return render(request, 'create_event.html', {'form': form})
 
-
-# def edit_event(self, request, *args, **kwargs):
-#     user = self.request.user
-#     queryset = Event.objects.filter(user=user)
-#     instance = get_object_or_404(queryset, pk=guest.id)
-#     form = editEventForm(data=request.POST, instance=instance)
-#     if form.is_valid():
-#         form.save()
-#         return redirect("/")
-
-#     return render(
-#         request,
-#         "edit_event.html",
-#         {
-#             "instance": instance,
-#             "form": form
-#         }
-#     )
 
 class EventDetail(generic.UpdateView):
 

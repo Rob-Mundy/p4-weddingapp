@@ -13,7 +13,7 @@
         <div class="card mb-3">
 
           <!-- form displayed if user hasn't created an Event -->
-          {% if not user.event.event_name %}
+          {% if not user.events %}
 
           Create Event
           <form method="post" style="margin-top: 1.3em;" action="{% url 'create_event' %}">
@@ -25,12 +25,8 @@
           {% else %}
 
           <div class="card-body">
-            <img class="card-img-top"
-              src="https://res.cloudinary.com/dkdheuvab/image/upload/v1679333275/banner_Screen-Shot-2019-07-16-at-10.31.03_pn4xzs.png"
-              alt="Married couple in field banner image">
-            <h3 class="card-title">{{ user.event.event_name }}</h3>
-            <p class="card-text">{{ user.event.event_date }} at {{ user.event.event_time }}</p>
-
+            <p class="card-text">Your event has already been created</p>
+            <a type="button" href="{% url 'home' %}" class="btn btn-secondary btn-md px-4 me-md-2">Back</a>
           </div>
 
           {% endif %}
