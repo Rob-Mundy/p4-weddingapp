@@ -57,6 +57,12 @@ class Guest(models.Model):
 
     class Meta:
         ordering = ['guest_name']
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'guest_name'],
+                name='unique guest for each user'
+                )
+        ]
 
     def __str__(self):
         return self.guest_name

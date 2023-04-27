@@ -22,11 +22,6 @@
     </script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-    <!-- HTMX -->
-    <script src="https://unpkg.com/htmx.org@1.8.6" 
-        integrity="sha384-Bj8qm/6B+71E6FQSySofJOUjA/gq330vEqjFx9LakWybUySyI1IQHwPtbTU7bNwx" crossorigin="anonymous">
-    </script>
-
 </head>
 
 <body class="d-flex flex-column h-100 main-bg">
@@ -47,10 +42,10 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_logout' %}">Log Out ({{request.user.username}})</a>
+                        <a class="nav-link" href="{% url 'guestlist' %}">Guestlist</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'guestlist' %}">Guestlist</a>
+                        <a class="nav-link" href="{% url 'account_logout' %}">Log Out ({{request.user.username}})</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
