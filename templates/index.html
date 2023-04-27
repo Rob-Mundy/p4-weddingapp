@@ -21,14 +21,12 @@
             <h3 class="card-title">{{ event.event_name }}</h3>
             <p class="card-text">{{ event.event_date }} at {{ event.event_time }}</p>
             
-            
-
-            
-            <a type="button" href="edit_event/{{ event.id }}" class="btn btn-secondary btn-md px-4 me-md-2 mt-3">Edit Event</a>
+            <a type="button" href="edit_event/{{ event.id }}" class="btn btn-secondary btn-md px-4 me-md-2">Edit Event</a>
             {% endfor %}
             
             {% if not user.events %}
-            <a type="button" href="{% url 'create_event' %}" class="btn btn-secondary btn-md px-4 me-md-2 mt-3">Create Event</a>
+            <h3 class="card-text">Please create your event</h3>
+            <a type="button" href="{% url 'create_event' %}" class="btn btn-secondary btn-md px-4 me-md-2">Create Event</a>
             {% endif %}
             
             

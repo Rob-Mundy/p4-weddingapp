@@ -154,9 +154,9 @@ def create_event(request):
 class EventDetail(generic.UpdateView):
 
     def get(self, request, pk):
-        # user = self.request.user
-        # queryset = Event.objects.filter(pk=pk)
-        instance = get_object_or_404(Event, pk=pk)
+        user = self.request.user
+        queryset = Event.objects.filter(user=user)
+        instance = get_object_or_404(queryset, pk=pk)
         form = editEventForm(request.POST or None, instance=instance)
 
         return render(
@@ -169,9 +169,9 @@ class EventDetail(generic.UpdateView):
         )
 
     def post(self, request, pk):
-        # user = self.request.user
-        # queryset = Event.objects.filter(pk=pk)
-        instance = get_object_or_404(Event, pk=pk)
+        user = self.request.user
+        queryset = Event.objects.filter(user=user)
+        instance = get_object_or_404(queryset, pk=pk)
         form = editEventForm(request.POST or None, instance=instance)
         if form.is_valid():
             form.save()
