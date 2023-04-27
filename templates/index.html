@@ -17,19 +17,20 @@
               alt="Married couple in field banner image">
 
             {% for event in events %}
-            {% if event.event_name %}
             
             <h3 class="card-title">{{ event.event_name }}</h3>
             <p class="card-text">{{ event.event_date }} at {{ event.event_time }}</p>
             
-            <a type="button" href="" class="btn btn-secondary btn-md px-4 me-md-2 mt-3">Edit Event</a>
-
-            {% else %}
-
-            <a type="button" href="{% url 'create_event' %}" class="btn btn-secondary btn-md px-4 me-md-2 mt-3">Create Event</a>
-
-            {% endif %}
             {% endfor %}
+
+            {% if event.user %}
+            <a type="button" href="" class="btn btn-secondary btn-md px-4 me-md-2 mt-3">Edit Event</a>
+            {% else %}
+           
+            <a type="button" href="{% url 'create_event' %}" class="btn btn-secondary btn-md px-4 me-md-2 mt-3">Create Event</a>
+            {% endif %}
+            
+            
           </div>
         </div>
       </div>

@@ -42,7 +42,7 @@ class GuestList(generic.View):
         user = self.request.user
         queryset = Guest.objects.filter(user=user)
         context_object_name = 'guests'
-        form = addGuestForm(request.POST or None)
+        form = addGuestForm(request.POST or None, initial={'user': user.id})
 
         return render(
             request,
@@ -54,10 +54,11 @@ class GuestList(generic.View):
         )
 
     def post(self, request, *args, **kwargs):
-        form = addGuestForm(data=request.POST)
+        user = self.request.user
+        form = addGuestForm(data=request.POST, initial={'user': user.id})
         if form.is_valid():
             guest_list = form.save(commit=False)
-            guest_list.user = request.user
+            guest_list.user = user
             guest_list.slug = slugify(str(guest_list.user.id) + '-' + guest_list.guest_name)
             guest_list.save()
             form.save(commit=True)
@@ -85,7 +86,7 @@ class GuestDetail(generic.View):
             "edit_guest.html",
             {
                 "instance": instance,
-                "form": form
+                "form": form,
             }
         )
 

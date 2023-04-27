@@ -10,7 +10,7 @@ class Event(models.Model):
     event_date = models.DateField()
     event_time = models.TimeField()
     created_on = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(
+    user = models.OneToOneField(
         User, on_delete=models.CASCADE, null=False, blank=False,
         default=int(1), related_name='events'
         )
@@ -33,7 +33,7 @@ PLUS_ONE_CHOICES = [(False, 'No'), (True, 'Yes')]
 
 
 class Guest(models.Model):
-    guest_name = models.CharField(max_length=200, blank=True)
+    guest_name = models.CharField(max_length=200, blank=False)
     slug = models.SlugField(max_length=200, unique=True)
     email = models.EmailField()
     event = models.ForeignKey(

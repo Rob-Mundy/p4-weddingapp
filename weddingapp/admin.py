@@ -13,7 +13,7 @@ class EventAdmin(admin.ModelAdmin):
 
 @admin.register(Guest)
 class GuestAdmin(admin.ModelAdmin):
-    list_display = ('guest_name', 'invited', 'attending', 'plus_one_attending')
+    list_display = ('guest_name', 'slug', 'invited', 'attending', 'plus_one_attending')
     search_fields = ['guest_name', 'invited']
     prepopulated_fields = {'slug': ('user', 'guest_name',)}
     list_filter = ('guest_name', 'attending')
