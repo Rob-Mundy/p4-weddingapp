@@ -151,37 +151,37 @@ def create_event(request):
 #         }
 #     )
 
-# class EventDetail(generic.UpdateView):
+class EventDetail(generic.UpdateView):
 
-#     def get(self, request, pk, *args, **kwargs):
-#         user = self.request.user
-#         queryset = Event.objects.filter(user=user)
-#         instance = get_object_or_404(queryset, pk=pk)
-#         form = editEventForm(request.POST or None, instance=instance)
+    def get(self, request, pk):
+        # user = self.request.user
+        # queryset = Event.objects.filter(pk=pk)
+        instance = get_object_or_404(Event, pk=pk)
+        form = editEventForm(request.POST or None, instance=instance)
 
-#         return render(
-#             request,
-#             "edit_event.html",
-#             {
-#                 "instance": instance,
-#                 "form": form
-#             }
-#         )
+        return render(
+            request,
+            "edit_event.html",
+            {
+                "instance": instance,
+                "form": form
+            }
+        )
 
-#     def post(self, request, pk, *args, **kwargs):
-#         user = self.request.user
-#         queryset = Event.objects.filter(user=user)
-#         instance = get_object_or_404(queryset, pk=pk)
-#         form = editEventForm(data=request.POST, instance=instance)
-#         if form.is_valid():
-#             form.save()
-#             return redirect("/")
+    def post(self, request, pk):
+        # user = self.request.user
+        # queryset = Event.objects.filter(pk=pk)
+        instance = get_object_or_404(Event, pk=pk)
+        form = editEventForm(request.POST or None, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect("/")
 
-#         return render(
-#             request,
-#             "edit_event.html",
-#             {
-#                 "instance": instance,
-#                 "form": form
-#             }
-#         )
+        return render(
+            request,
+            "edit_event.html",
+            {
+                "instance": instance,
+                "form": form
+            }
+        )

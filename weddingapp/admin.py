@@ -3,12 +3,7 @@ from .models import Event, Guest
 from django_summernote.admin import SummernoteModelAdmin
 
 
-# admin.site.register(Event)
-
-@admin.register(Event)
-class EventAdmin(admin.ModelAdmin):
-    list_filter = ('event_name', 'event_date', 'user')
-    list_display = ('event_name', 'event_date', 'user')
+admin.site.register(Event)
 
 
 @admin.register(Guest)

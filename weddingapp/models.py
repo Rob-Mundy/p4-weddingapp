@@ -49,7 +49,6 @@ class Guest(models.Model):
     dietary_requirements = MultiSelectField(
         choices=DIETARY_REQUIREMENT_CHOICES
         )
-    message_to_couple = models.TextField(blank=True)
     invited = models.IntegerField(choices=STATUS, default=0)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, null=False, blank=False,
