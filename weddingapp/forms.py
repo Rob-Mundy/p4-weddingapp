@@ -38,4 +38,4 @@ class addGuestForm(ModelForm):
 class editGuestForm(ModelForm):
     class Meta:
         model = Guest
-        exclude = ['user', 'slug', 'message_to_couple']
+        exclude = ['user', 'slug', 'message_to_couple', 'event']

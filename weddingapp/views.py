@@ -22,6 +22,7 @@ class GuestList(generic.View):
 
     def get(self, request, *args, **kwargs):
         user = self.request.user
+        event = Event.objects.get(user=user)
         queryset = Guest.objects.filter(user=user)
         context_object_name = 'guests'
         form = addGuestForm(request.POST or None, initial={'user': user.id})
@@ -37,11 +38,13 @@ class GuestList(generic.View):
 
     def post(self, request, *args, **kwargs):
         user = self.request.user
+        event = Event.objects.get(user=user)
         form = addGuestForm(data=request.POST, initial={'user': user.id})
         if form.is_valid():
             guest_list = form.save(commit=False)
             guest_list.user = user
             guest_list.slug = slugify(str(guest_list.user.id) + '-' + guest_list.guest_name)
+            guest_list.event = event
             guest_list.save()
             form.save(commit=True)
             return redirect("guestlist")
