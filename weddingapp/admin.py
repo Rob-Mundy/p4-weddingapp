@@ -12,9 +12,3 @@ class GuestAdmin(admin.ModelAdmin):
     search_fields = ['guest_name', 'invited']
     prepopulated_fields = {'slug': ('user', 'guest_name',)}
     list_filter = ('guest_name', 'attending')
-
-
-# @admin.register(Invitation)
-# class InvitationAdmin(SummernoteModelAdmin):
-#     summernote_fields = ('invitation_message')
-#     list_display = ('invitation_name', 'user')

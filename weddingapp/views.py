@@ -2,22 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from .models import Guest, Event, User, STATUS, IS_ATTENDING_CHOICES
 from django.conf import settings
-from .forms import createEventForm, editEventForm, addGuestForm, editGuestForm
+from .forms import CreateEventForm, EditEventForm, AddGuestForm, EditGuestForm
 from slugify import slugify
 from django.core.exceptions import ValidationError
 from django.db.models import Count, Q
-
-
-# class EventList(generic.ListView):
-#     model = Event
-#     template_name = 'index.html'
-#     context_object_name = 'events'
-
-#     def get_queryset(self):
-#         user = self.request.user
-#         if user.is_authenticated:
-#             # guest_count = Event.objects.annotate(num_guests=Count("guests"))
-#             return Event.objects.filter(user=user)
 
 
 class EventList(generic.ListView):
@@ -45,7 +33,7 @@ class GuestList(generic.View):
         event = get_object_or_404(Event, user=user)  #404 error if user navigates to guestlist but has no event
         queryset = Guest.objects.filter(user=user)
         context_object_name = 'guests'
-        form = addGuestForm(request.POST or None, initial={'user': user.id})
+        form = AddGuestForm(request.POST or None, initial={'user': user.id})
 
         return render(
             request,
@@ -59,7 +47,7 @@ class GuestList(generic.View):
     def post(self, request, *args, **kwargs):
         user = self.request.user
         event = get_object_or_404(Event, user=user)
-        form = addGuestForm(data=request.POST, initial={'user': user.id})
+        form = AddGuestForm(data=request.POST, initial={'user': user.id})
         if form.is_valid():
             guest_list = form.save(commit=False)
             guest_list.user = user
@@ -84,7 +72,7 @@ class GuestDetail(generic.View):
         user = self.request.user
         queryset = Guest.objects.filter(user=user)
         instance = get_object_or_404(queryset, slug=slug)
-        form = editGuestForm(request.POST or None, instance=instance)
+        form = EditGuestForm(request.POST or None, instance=instance)
 
         return render(
             request,
@@ -99,7 +87,7 @@ class GuestDetail(generic.View):
         user = self.request.user
         queryset = Guest.objects.filter(user=user)
         instance = get_object_or_404(queryset, slug=slug)
-        form = editGuestForm(data=request.POST, instance=instance)
+        form = EditGuestForm(data=request.POST, instance=instance)
         if form.is_valid():
             form.save()
             return redirect("guestlist")
@@ -116,7 +104,6 @@ class GuestDetail(generic.View):
 
 def delete_guest(request, pk):
     queryset = Guest.objects.get(id=pk)
-    name = Guest.guest_name
     if request.method == 'POST':
         queryset.delete()
         return redirect("guestlist")
@@ -124,9 +111,9 @@ def delete_guest(request, pk):
 
 
 def create_event(request):
-    form = createEventForm()
+    form = CreateEventForm()
     if request.method == "POST":
-        form = createEventForm(request.POST)
+        form = CreateEventForm(request.POST)
         if form.is_valid():
             event_list = form.save(commit=False)
             event_list.user = request.user
@@ -134,7 +121,7 @@ def create_event(request):
             form.save(commit=True)
             return redirect('/')
     else:
-        form = createEventForm()
+        form = CreateEventForm()
     return render(request, 'create_event.html', {'form': form})
 
 
@@ -144,7 +131,7 @@ class EventDetail(generic.UpdateView):
         user = self.request.user
         queryset = Event.objects.filter(user=user)
         instance = get_object_or_404(queryset, pk=pk)
-        form = editEventForm(request.POST or None, instance=instance)
+        form = EditEventForm(request.POST or None, instance=instance)
 
         return render(
             request,
@@ -159,7 +146,7 @@ class EventDetail(generic.UpdateView):
         user = self.request.user
         queryset = Event.objects.filter(user=user)
         instance = get_object_or_404(queryset, pk=pk)
-        form = editEventForm(request.POST or None, instance=instance)
+        form = EditEventForm(request.POST or None, instance=instance)
         if form.is_valid():
             form.save()
             return redirect("/")

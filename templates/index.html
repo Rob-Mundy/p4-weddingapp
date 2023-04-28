@@ -48,7 +48,12 @@
           <div class="card-body">
             <h3 class="card-title">Attendees</h3>
             <p class="card-text">Number of guests : {{ event_stats.guests__count }}</p>
+
+            {% if user.events %}
             <a type="button" href="{% url 'guestlist' %}" class="btn btn-secondary btn-md px-4 me-md-2">Add Guests</a>
+            {% else %}
+            <p>You must create an event before adding guests</p>
+            {% endif %}
           </div>
         </div>
       </div>

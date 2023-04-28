@@ -5,19 +5,19 @@ from django.core.exceptions import ValidationError
 from slugify import slugify
 
 
-class createEventForm(ModelForm):
+class CreateEventForm(ModelForm):
     class Meta:
         model = Event
         fields = ['event_name', 'event_date', 'event_time']
 
 
-class editEventForm(ModelForm):
+class EditEventForm(ModelForm):
     class Meta:
         model = Event
         fields = ['event_name', 'event_date', 'event_time']
 
 
-class addGuestForm(ModelForm):
+class AddGuestForm(ModelForm):
     class Meta:
         model = Guest
         exclude = [
@@ -35,7 +35,7 @@ class addGuestForm(ModelForm):
             }
 
 
-class editGuestForm(ModelForm):
+class EditGuestForm(ModelForm):
     class Meta:
         model = Guest
         exclude = ['user', 'slug', 'message_to_couple', 'event']
