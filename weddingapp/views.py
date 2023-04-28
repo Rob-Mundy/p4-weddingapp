@@ -5,6 +5,19 @@ from django.conf import settings
 from .forms import createEventForm, editEventForm, addGuestForm, editGuestForm
 from slugify import slugify
 from django.core.exceptions import ValidationError
+from django.db.models import Count, Q
+
+
+# class EventList(generic.ListView):
+#     model = Event
+#     template_name = 'index.html'
+#     context_object_name = 'events'
+
+#     def get_queryset(self):
+#         user = self.request.user
+#         if user.is_authenticated:
+#             # guest_count = Event.objects.annotate(num_guests=Count("guests"))
+#             return Event.objects.filter(user=user)
 
 
 class EventList(generic.ListView):
@@ -12,17 +25,24 @@ class EventList(generic.ListView):
     template_name = 'index.html'
     context_object_name = 'events'
 
-    def get_queryset(self):
+    def get_queryset(self, *args, **kwargs):
         user = self.request.user
         if user.is_authenticated:
             return Event.objects.filter(user=user)
+
+    def get_context_data(self, *args, **kwargs):
+        user = self.request.user
+        context = super(EventList, self).get_context_data(*args, **kwargs)
+        if user.is_authenticated:
+            context['guest_count'] = Event.objects.filter(user=user).aggregate(Count('guests'))
+            return context
 
 
 class GuestList(generic.View):
 
     def get(self, request, *args, **kwargs):
         user = self.request.user
-        event = Event.objects.get(user=user)
+        event = get_object_or_404(Event, user=user)  #404 error if user navigates to guestlist but has no event
         queryset = Guest.objects.filter(user=user)
         context_object_name = 'guests'
         form = addGuestForm(request.POST or None, initial={'user': user.id})
@@ -38,7 +58,7 @@ class GuestList(generic.View):
 
     def post(self, request, *args, **kwargs):
         user = self.request.user
-        event = Event.objects.get(user=user)
+        event = get_object_or_404(Event, user=user)
         form = addGuestForm(data=request.POST, initial={'user': user.id})
         if form.is_valid():
             guest_list = form.save(commit=False)
