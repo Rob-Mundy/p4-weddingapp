@@ -34,7 +34,7 @@ class EventList(generic.ListView):
         user = self.request.user
         context = super(EventList, self).get_context_data(*args, **kwargs)
         if user.is_authenticated:
-            context['guest_count'] = Event.objects.filter(user=user).aggregate(Count('guests'))
+            context['event_stats'] = Event.objects.filter(user=user).aggregate(Count('guests'))
             return context
 
 

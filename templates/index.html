@@ -2,7 +2,7 @@
 
 {% if user.is_authenticated %}
 
-<div class="container-fluid">
+<div class="container col-xxl-10 px-3 py-3">
   <div class="row">
 
     <!-- Event Column -->
@@ -37,7 +37,7 @@
     </div>
 
     <!-- Spacing Column -->
-    <div class="col-2 mt-3">
+    <div class="col-1 mt-3">
     </div>
 
     <!-- Event Statistics Column -->
@@ -47,7 +47,8 @@
 
           <div class="card-body">
             <h3 class="card-title">Attendees</h3>
-            <p class="card-text">Number of guests : {{ guest_count.guests__count }}</p>
+            <p class="card-text">Number of guests : {{ event_stats.guests__count }}</p>
+            <a type="button" href="{% url 'guestlist' %}" class="btn btn-secondary btn-md px-4 me-md-2">Add Guests</a>
           </div>
         </div>
       </div>

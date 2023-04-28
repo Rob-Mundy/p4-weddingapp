@@ -3,14 +3,38 @@
 
 <!-- {% if user.is_authenticated %} -->
 
-<div class="container-fluid">
+<div class="container col-xxl-10 px-3 py-3">
     <div class="row">
         <!-- <div class="d-flex gap-2 w-100 justify-content-between"> -->
+        <!-- add guest form -->
         <div class="col-4 mt-3">
+            <div class="list-group w-auto" style="min-width: 200px">
+                <h3 class="text-center">Add Guest</h3>
+                <hr class="mt-0">
+                <div class="row white">
+                    <div class="columns large-12">
 
+                        <form method="POST" id="add-guest-form" action="{% url 'guestlist' %}">
+                            {% csrf_token %}
+                            <div class="fieldWrapper" id="the_guest">
+                                {{ form | crispy }}
+                            </div>
+                            <div id="results"></div> <!-- errors go here -->
+                            <button type="submit" class="btn btn-secondary btn-md px-4 me-md-2 mt-3 mb-3">Add</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Spacing Column -->
+        <div class="col-2 mt-3">
+        </div>
+
+        <div class="col-4 mt-3">
             <!-- Guest Column -->
             {% if guests %}
-
             <div class="list-group w-auto" style="min-width: 200px">
                 <h3 class="text-center">Guestlist</h3>
                 <hr class="mt-0">
@@ -33,38 +57,13 @@
                     {% endfor %}
                 </ul>
                 {% else %}
-
-                <!-- <p>You do not have any guests in your guestlist</p> -->
                 {% endif %}
-
             </div>
         </div>
 
-        <!-- Spacing Column -->
-        <div class="col-2 mt-3">
-        </div>
 
-        <!-- add guest form -->
-        <div class="col-4 mt-3">
-            <div class="list-group w-auto" style="min-width: 200px">
-                <h3 class="text-center">Add Guest</h3>
-                <hr class="mt-0">
-                <div class="row white">
-                    <div class="columns large-12">
 
-                        <form method="POST" id="add-guest-form" action="{% url 'guestlist' %}">
-                            {% csrf_token %}
-                            <div class="fieldWrapper" id="the_guest">
-                                {{ form | crispy }}
-                            </div>
-                            <div id="results"></div> <!-- errors go here -->
-                            <button type="submit" class="btn btn-secondary btn-md px-4 me-md-2 mt-3 mb-3">Add</button>
-                        </form>
 
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
