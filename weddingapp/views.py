@@ -22,7 +22,9 @@ class EventList(generic.ListView):
         user = self.request.user
         context = super(EventList, self).get_context_data(*args, **kwargs)
         if user.is_authenticated:
-            context['event_stats'] = Event.objects.filter(user=user).aggregate(Count('guests'))
+            # filters event objects by user and counts guests
+            context['event_stats'] =
+            Event.objects.filter(user=user).aggregate(Count('guests'))
             return context
 
 
@@ -30,8 +32,8 @@ class GuestList(generic.View):
 
     def get(self, request, *args, **kwargs):
         user = self.request.user
+        # 404 error if user navigates to guestlist but has no event
         event = get_object_or_404(Event, user=user)
-            #404 error if user navigates to guestlist but has no event
         queryset = Guest.objects.filter(user=user)
         context_object_name = 'guests'
         form = AddGuestForm(request.POST or None, initial={'user': user.id})
@@ -47,12 +49,19 @@ class GuestList(generic.View):
 
     def post(self, request, *args, **kwargs):
         user = self.request.user
+        # 404 error if user triest to access events that
+        # belong to other users
         event = get_object_or_404(Event, user=user)
         form = AddGuestForm(data=request.POST, initial={'user': user.id})
         if form.is_valid():
             guest_list = form.save(commit=False)
             guest_list.user = user
-            guest_list.slug = slugify(str(guest_list.user.id) + '-' + guest_list.guest_name)
+            # slug field added based on concatonation of user_id
+            # and guest_name so that guest can be accessed by slug
+            # for editing
+            guest_list.slug =
+            slugify(str(guest_list.user.id) + '-' + guest_list.guest_name)
+
             guest_list.event = event
             guest_list.save()
             form.save(commit=True)
