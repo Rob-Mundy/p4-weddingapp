@@ -10,20 +10,23 @@
       <div class="row">
 
         <div class="card mb-3">
-
+          
+          <!-- Wedding image -->
           <div class="card-body">
             <img class="card-img-top"
               src="https://res.cloudinary.com/dkdheuvab/image/upload/v1679333275/banner_Screen-Shot-2019-07-16-at-10.31.03_pn4xzs.png"
               alt="Married couple in field banner image">
 
             {% for event in events %}
-
+            
+            <!-- Event details -->
             <h3 class="card-title">{{ event.event_name }}</h3>
             <p class="card-text">{{ event.event_date }} at {{ event.event_time }}</p>
             <a href="edit_event/{{ event.id }}" class="btn btn-secondary btn-md px-4 me-md-2">Edit
               Event</a>
             {% endfor %}
-
+            
+            <!-- Card displayed if user hasn't created an event -->
             {% if not user.events %}
             <h3 class="card-text">Please create your event</h3>
             <a href="{% url 'create_event' %}" class="btn btn-secondary btn-md px-4 me-md-2">Create
@@ -44,13 +47,17 @@
     <div class="col-4 mt-3 mb-3">
       <div class="row">
         <div class="card mb-3">
-
+          
+          <!-- Tally of guests created -->
           <div class="card-body">
             <h3 class="card-title">Attendees</h3>
             <p class="card-text">Number of guests : {{ event_stats.guests__count }}</p>
-
+            
+            <!-- Button that links to guestlist -->
             {% if user.events %}
             <a href="{% url 'guestlist' %}" class="btn btn-secondary btn-md px-4 me-md-2">Add Guests</a>
+            
+            <!-- Prompt message to create an event if one doesn't exist -->
             {% else %}
             <p>You must create an event before adding guests</p>
             {% endif %}
