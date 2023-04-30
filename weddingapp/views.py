@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
-from .models import Guest, Event, User, STATUS, IS_ATTENDING_CHOICES
+from .models import Guest, Event, User
 from django.conf import settings
 from .forms import CreateEventForm, EditEventForm, AddGuestForm, EditGuestForm
 from slugify import slugify
 from django.core.exceptions import ValidationError
-from django.db.models import Count, Q
+from django.db.models import Count
 
 
 class EventList(generic.ListView):
@@ -30,7 +30,8 @@ class GuestList(generic.View):
 
     def get(self, request, *args, **kwargs):
         user = self.request.user
-        event = get_object_or_404(Event, user=user)  #404 error if user navigates to guestlist but has no event
+        event = get_object_or_404(Event, user=user)
+            #404 error if user navigates to guestlist but has no event
         queryset = Guest.objects.filter(user=user)
         context_object_name = 'guests'
         form = AddGuestForm(request.POST or None, initial={'user': user.id})
