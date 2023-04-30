@@ -20,13 +20,13 @@
 
             <h3 class="card-title">{{ event.event_name }}</h3>
             <p class="card-text">{{ event.event_date }} at {{ event.event_time }}</p>
-            <a type="button" href="edit_event/{{ event.id }}" class="btn btn-secondary btn-md px-4 me-md-2">Edit
+            <a href="edit_event/{{ event.id }}" class="btn btn-secondary btn-md px-4 me-md-2">Edit
               Event</a>
             {% endfor %}
 
             {% if not user.events %}
             <h3 class="card-text">Please create your event</h3>
-            <a type="button" href="{% url 'create_event' %}" class="btn btn-secondary btn-md px-4 me-md-2">Create
+            <a href="{% url 'create_event' %}" class="btn btn-secondary btn-md px-4 me-md-2">Create
               Event</a>
             {% endif %}
 
@@ -50,7 +50,7 @@
             <p class="card-text">Number of guests : {{ event_stats.guests__count }}</p>
 
             {% if user.events %}
-            <a type="button" href="{% url 'guestlist' %}" class="btn btn-secondary btn-md px-4 me-md-2">Add Guests</a>
+            <a href="{% url 'guestlist' %}" class="btn btn-secondary btn-md px-4 me-md-2">Add Guests</a>
             {% else %}
             <p>You must create an event before adding guests</p>
             {% endif %}
@@ -78,9 +78,9 @@
         <h1 class="display-5 fw-bold lh-1 mb-3">Wedding planning made easy</h1>
         <p class="lead">Create guestlists, send RSVP invitations and view attendees via simple dashboards</p>
         <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-          <a type="button" href="{% url 'account_signup' %}" class="btn btn-secondary btn-lg px-4 me-md-2">Sign
+          <a href="{% url 'account_signup' %}" class="btn btn-secondary btn-lg px-4 me-md-2">Sign
             Up</a>
-          <a type="button" href="{% url 'account_login' %}" class="btn btn-outline-secondary btn-lg px-4">Log
+          <a href="{% url 'account_login' %}" class="btn btn-outline-secondary btn-lg px-4">Log
             In</a>
         </div>
       </div>
