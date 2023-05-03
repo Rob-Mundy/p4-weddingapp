@@ -81,11 +81,15 @@ Two Google Fonts Were used throughout the website:
 
 All images were used with the permission of their owners, all of which have been credited in the [credits](#Credits) section.
 
-### Mockups
+### Mockups & Schema
 
-A mockup for the desktop was created for the homepage in Excel.
+A desktop view mockup for the homepage was created in Excel.
 
-[Home Page Mockup](static/images/homepage_mockup.png)
+![Home Page Mockup](static/images/homepage_mockup.png)
+
+An initial schema for the class-based models was also drafted in Excel:
+
+[Class-based model schema draft](/static/images/class_model_schema_plan.png)
 
 ### Features
 
@@ -288,9 +292,13 @@ The following considerations were highlighted during a tutoring session:
 * Given the time constraints, the initial project scope would be overly ambitious. Therefore, it will be crucial to employ an Agile approach to prioritize feature implementation in a logical sequence.
 * The OneToOne replationship between the User and the Event model may be unsuitable.
 
-### W3C Validator
+### Validation
 
++ All HTML pages passed through the official W3C Validator without errors.
 
++ All CSS pages passed through the official W3C Jigsaw Validator without errors.
+
++ All Python files successfully passed through the CI Python Linter; all clear, no errors. 
 
 ### Solved Bugs
 
@@ -303,31 +311,29 @@ The following considerations were highlighted during a tutoring session:
       In the GitPod Terminal, run the commands ""python3 manage.py makemigrations"" and ""python3 manage.py migrate"" to remake migrations and setup the new database.
       Create a new superuser by running: "python manage.py createsuperuser".
 
-2. "I faced a challenge in preventing the entry of duplicate guests due to the slug field that's added within the post method of the Guest object. Since the guest_name field is not unique, it was important to differentiate between multiple individuals with the same name in order to access the edit_guest page via the slug field. I ultimately decided to allow only a single instance of each guest name per user, with variations created as necessary. However, implementing guest_name validation prior to the slugfield validation proved difficult. To address this issue, I pre-populated the user on the AddGuestForm as a hidden field and incorporated the following constraints to the Guest model, which were then validated by Crispy Forms.:
-constraints = [models.UniqueConstraint(fields=['user', 'guest_name'],  name='unique guest for each user')]"
+2. I faced a challenge in preventing the entry of duplicate guests due to the slug field that's added within the post method of the Guest object. Since the guest_name field is not unique, it was important to differentiate between multiple individuals with the same name in order to access the edit_guest page via the slug field. I ultimately decided to allow only a single instance of each guest name per user, with variations created as necessary. However, implementing guest_name validation prior to the slugfield validation proved difficult. To address this issue, I pre-populated the user on the AddGuestForm as a hidden field and incorporated the following constraints to the Guest model, which were then validated by Crispy Forms.:
+constraints = [models.UniqueConstraint(fields=['user', 'guest_name'],  name='unique guest for each user')]
 
 ### Known Bugs
 
-1. 
+1. Although no visible links to the guestlist exist before an event is created, users can manually add '/guestlist/' to the website's URL, resulting in a 404 page not found error. To improve user experience, I plan to include a message that redirects users to the home or create event page instead of reaching a dead end. 
 
 ### Testing User Stories
 
 * First Time Visitors
-  * 
-
-  ![website]()
-
-  * 
-
-  *
+  * USER STORY: Understand the website - As a **First Time Visitor** I can **understand what the site offers** so that **I can decide whether to register**
+  * USER STORY: Social Links - As a **First Time Visitor** I can **view social media account links** so that **I can get a better appreciation for the company and get in contact**
+  * USER STORY: Register Account - As a **First Time Visitor** I can **easily register my account** so that **I can access site functionality**
 
 * Returning Users
-  *
-
-
-
-  * 
- 
+  * USER STORY: Easy Navigation - As a **Site User** I can **easily navigate the site** so that **I don't get stuck**
+  * USER STORY: Register Account - As a **First Time Visitor** I can **easily register my account** so that **I can access site functionality**
+  * USER STORY: View user-specific content - As a **Site User** I can **view my user-specific guestlist** so that **I don't accidentally contact people I don't know**
+  * USER STORY: Create Wedding Event - As a **Site Admin** I can **create an event** so that **I can access site functionality**
+  * USER STORY: Edit Wedding Event - As a **Site User** I can **edit an event** so that **I can correct mistakes or accommdate changes**
+  * USER STORY: Add Guests - As a **Site User** I can **add guests** so that **I can build a list of potential attendees**
+  * USER STORY: Edit Guests - As a **Site User** I can **edit guests** so that **I can make alterations to a list of potential attendees**
+  * USER STORY: Delete Guests - As a **Site User** I can **delete guests** so that **I can correct mistakes in a list of potential attendees**
 
 ### Lighthouse
 
@@ -393,6 +399,8 @@ All content for the website was written by Robert Mundy.
 
 ### Media
 
-#### Hero Image 
+#### Hero Image and Event Details Card
+
+This image was sourced via my [depositphotos.com](https://depositphotos.com/123192248/stock-photo-wedding-couple-in-evening.html) subscription
 
 ### Acknowledgments
