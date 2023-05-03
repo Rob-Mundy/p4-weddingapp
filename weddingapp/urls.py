@@ -1,7 +1,7 @@
 from . import views
 from django.urls import path
-from .views import create_event, EventList, EventDetail, GuestList,
-GuestDetail, delete_guest
+from .views import create_event, EventList, EventDetail, GuestList 
+from .views import GuestDetail, delete_guest
 
 urlpatterns = [
     path('', views.EventList.as_view(), name='home'),

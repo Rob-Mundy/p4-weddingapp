@@ -23,8 +23,8 @@ class EventList(generic.ListView):
         context = super(EventList, self).get_context_data(*args, **kwargs)
         if user.is_authenticated:
             # filters event objects by user and counts guests
-            context['event_stats'] =
-            Event.objects.filter(user=user).aggregate(Count('guests'))
+            event_stats = Event.objects.filter(user=user)
+            context['event_stats'] = event_stats.aggregate(Count('guests'))
             return context
 
 
@@ -58,9 +58,10 @@ class GuestList(generic.View):
             guest_list.user = user
             # slug field added based on concatonation of user_id
             # and guest_name so that guest can be accessed by slug
-            # for editing
-            guest_list.slug =
-            slugify(str(guest_list.user.id) + '-' + guest_list.guest_name)
+            # for editing purposes
+            user_slug = slugify(str(guest_list.user.id))
+            guest_slug = slugify(str(guest_list.guest_name))
+            guest_list.slug = user_slug + '-' + guest_slug
 
             guest_list.event = event
             guest_list.save()
