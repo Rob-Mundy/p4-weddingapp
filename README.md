@@ -1,108 +1,358 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Union Wedding App Website
 
-Welcome Rob-Mundy,
+[View the live project here](https://rm-weddingapp.herokuapp.com/)
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+The Union Wedding App website is designed to be responsive, allowing visitors to view it on a range of devices.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+![Union Wedding App Website shown on a range of devices](assets/images/…..)
 
-## Gitpod Reminders
+## CONTENTS
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+* [User Experience (UX)](#User-Experience-(UX))
 
-`python3 -m http.server`
+* [Design](#Design)
 
-A blue button should appear to click: _Make Public_,
+* [Technologies Used](#Technologies-Used)
 
-Another blue button should appear to click: _Open Browser_.
+* [Setup & Deployment](#Setup-&-Deployment)
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+* [Testing](#Testing)
+  
+* [Credits](#Credits)
 
-A blue button should appear to click: _Make Public_,
+- - -
 
-Another blue button should appear to click: _Open Browser_.
+## User Experience (UX)
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+### Initial Discussion
 
-To log into the Heroku toolbelt CLI:
+Union Wedding App is an online wedding planning application that enables site users to create and manage guestlists and record their attendees’ preferences.  Future developments would include the ability to design and send wedding invitations to guests via email, as well as receive and update results from guests’ RSVPs.
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+#### Key information for the site
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+* When is the site user's wedding event
+* Who are the potential wedding guests
+* What are the wedding attendees' preferences
+* How can the site users get in touch via social media
 
-------
+### User Stories
 
-## Release History
+#### First Time Visitor Goals
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+* USER STORY: Understand the website - As a **First Time Visitor** I can **understand what the site offers** so that **I can decide whether to register**
+* USER STORY: Social Links - As a **First Time Visitor** I can **view social media account links** so that **I can get a better appreciation for the company and get in contact**
+* USER STORY: Register Account - As a **First Time Visitor** I can **easily register my account** so that **I can access site functionality**
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+#### Returning User Goals
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+* USER STORY: Easy Navigation - As a **Site User** I can **easily navigate the site** so that **I don't get stuck**
+* USER STORY: Register Account - As a **First Time Visitor** I can **easily register my account** so that **I can access site functionality**
+* USER STORY: View user-specific content - As a **Site User** I can **view my user-specific guestlist** so that **I don't accidentally contact people I don't know**
+* USER STORY: Create Wedding Event - As a **Site Admin** I can **create an event** so that **I can access site functionality**
+* USER STORY: Edit Wedding Event - As a **Site User** I can **edit an event** so that **I can correct mistakes or accommdate changes**
+* USER STORY: Add Guests - As a **Site User** I can **add guests** so that **I can build a list of potential attendees**
+* USER STORY: Edit Guests - As a **Site User** I can **edit guests** so that **I can make alterations to a list of potential attendees**
+* USER STORY: Delete Guests - As a **Site User** I can **delete guests** so that **I can correct mistakes in a list of potential attendees**
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+#### Incomplete/Future User Goals
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+* USER STORY: Create invite - As a **Site User** I can **create an invite** so that **I can tailor messages to suit my tastes** 
+* USER STORY: RSVP - As a **Guest Recipient User** I can **RSVP** so that **I can accept or decline an invitation and advise as to my preferences**
+* USER STORY: View List of Attendees - As a **Site User** I can **view/filter list of attendees** so that **I can make informed  decisions based on criteria**
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+## Design
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+### Colour Scheme
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+![Union Wedding App Website Colour Palette](static/images/lilac_pallette.png)
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+The color scheme for the website was created via [Coolors](https://coolors.co/), utilizing a pastoral wedding scene photo as the basis for generating the palette. To ensure adequate contrast for various site elements, tonal variations were carefully selected.
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+### Typography
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+Two Google Fonts Were used throughout the website:
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+* Playfair Display is used for headings on the site. It is a serif font that is often seen in high-end, luxury branding and editorial design due to its elegant and sophisticated appearance.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+* Figtree is used for the body text on the site. It is a sans-serif font that is characterised by its clean lines and minimalist design that improves readability.  
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+### Imagery
 
-------
+All images were used with the permission of their owners, all of which have been credited in the [credits](#Credits) section.
 
-## FAQ about the uptime script
+### Mockups
 
-**Why have you added this script?**
+A mockup for the desktop was created for the homepage in Excel.
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+[Home Page Mockup](static/images/homepage_mockup.png)
 
-**How will this affect me?**
+### Features
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+The website currently comprises three main pages: the landing page prior to login, the homepage visible to the authenticated user, and the guestlist page. Available pages change according to user actions as explained below.
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+* All website pages extend the base.html that includes:
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+  * A header positioned at the top of the page, featuring the website name, Union, along with a responsive nav bar and a tagline offering the user "a helping hand for your big day". The nav bar is located in a familiar place and collapses to a hamburger icon on smaller devices so as not to crowd the screen and enhance the user experience. The nav bar initially displays three links for the unauthenticated user: Home, Sign Up, and Log In. When authenticated this changes to Home and Logout(username), and when the user has created a wedding Event the Guestlist link appears.  
 
-**So….?**
+  * A footer containing links to fictitious social media accounts; instagram, facebook and twitter. Icons were chosen to maintain a familiar and uncluttered appearance.
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+* Home Page.
+  * Section 1
+  Section 1 content
+  * Section 2   
+  Section 2 content
+  * Section 3
+  Section 3 content
 
-**Can I opt out?**
+* Home Page (authenticated)
+  * Section 1
+  Section 1 content
+  
+* Guestlist
+  * Section 1
+  Content
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+* Future Implementations.
+  * Allow users to create wedding invitations containing uploaded pictures and messages of their choosing.
+  * Connect a mail account so that people in the Guest class model can be sent invites via email.
+  * Enhance the Attendees card on the homepage to display various statistics such as total guests invited, total guests attending, as well as tallies of various dietary requirements e.g. 10 x vegetarians, 5 x teetotal.
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+### Accessibility
 
-**Anything more?**
+Throughout the coding process, I have made a conscious effort to prioritize website accessibility. This has been accomplished through several measures, including implementing semantic HTML, adding descriptive alt attributes to images, providing information for screen readers in instances where icons are used instead of text (such as footer icons), maintaining sufficient color contrast across the site, and making sure that menus are easily navigable for users with screen readers by indicating the current page.
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+- - -
 
----
+## Technologies Used
 
-Happy coding!
+### Languages Used
+
+HTML and CSS and Python were used to create this website.
+
+### Frameworks, Libraries & Programs Used
+
+Django==3.2.18 - Framework used to simplify Python programming
+
+    django-allauth==0.52.0 - used for site authentication
+
+    django-crispy-forms==1.14.0 - used for form validation
+
+    python-slugify==8.0.1 - used for creating slugfield values
+
+elephantSQL - To house the postgreSQL database
+
+Heroku - For deployment
+
+Cloudinary - As a cloud image repositary
+
+Git - For version control.
+
+Github - To create issues from user stories and manage via Kanban board.
+
+Bootstrap - Framework code used throughout the website including: Nav bar, Hero image, Guestlist listgroup. Amendments to Bootstrap classess and custom stylings were added via a separate style.css file saved in the static folder.
+
+Google Fonts - To select and import the fonts used throughout the website.
+
+Font Awesome - To select and import the iconography for the Social footer links.
+
+Google Dev Tools - For testing, troubleshooting, and improving accessibility and responsivenes.
+
+- - -
+
+## Setup-&-Deployment
+
+### Setup Django and supporting libraries
+
+This project was created using the Django framework, which was installed as follows:
+
++ In the Terminal:
+
+    + Install Django and gunicorn: pip3 install 'django<4' gunicorn
+
+    + Install supporting libraries: pip3 install dj_database_url psycopg2
+
+    + Install Cloudinary Libraries: pip3 install dj3-cloudinary-storage
+
+    + Create requirements file:	pip3 freeze --local > requirements.txt
+
+    + Create Project: django-admin startproject union . 
+
+    + Create App: python3 manage.py startapp weddingapp
+
++ In settings.py:
+
+    + Add to installed apps: INSTALLED_APPS = [
+    …
+    'weddingapp']
+
+    + save file
+
++ In the Terminal:
+
+    + Migrate Changes: python3 manage.py migrate
+
+    + Run Server to Test: python3 manage.py runserver
+
+
+### Setup external database
+
+elephantSQL.com was used to create the postgreSQL database via the following process:
+
++ Log in to elephantSQL account
+
++ Click “Create New Instance”
+
++ Name the plan and select the Tiny Turtle (Free) plan
+
++ Click “Select Region” and select a nearby datacenter
+
++ Click “Review”, check the details are correct, and click “Create instance” 
+
++ Click on the database instance name for this project on the dashboard and make a note of the  ElephantSQL database URL to add to env.py and Heroku
+
+Return to Gitpod to attach the database as follows:
+
++ Create env.py file on top level directory and while inside:
+
+    + Import os library: import os
+
+    + Set environment variables: os.environ["DATABASE_URL"] = "Paste in ElephantSQL database URL"
+
+    + Add a secret key that has been generated via [Djecrety](https://djecrety.ir/): os.environ["SECRET_KEY"] = "Paste in Djecrety secret key"
+
+
+### Deployment
+
+This project was deployed to Heroku via the following process:
+
++ From the homepage click "New" then "Create new app"
+
++ Give the project an appropriate name, rm-weddingapp in this case, select "Europe" as the region then click "Create app"
+
++ In the "Settings" tab, click Reveal Config Vars
+
++ Add the following Config Vars:
+    + DATABASE_URL = Paste in ElephantSQL database url. 
+
+    + SECRET_KEY = Paste in Djecrety secret key. 
+
+    + CLOUDINARY_URL = Paste in Cloudinary URL 
+
+    + DISABLE_COLLECTSTATIC = 1 (temporary step, disable before deployment)
+
++ In the "Deployment" tab, select "GitHub - Connect to GitHub" as the Deployment method
+
++ Search for the GitHub project name, "Rob-Mundy/p4-weddingapp", in the "Search for a repository to connect to" search box
+
++ Click the "Connect" button at the bottom of the page
+
++ When connected, scroll to the bottom of the page and in the "Manual deploy" section, select "main" as the chosen branch to deploy and click "Deploy Branch"
+
++ Following a short build process, a link to the project becomes available
+
++ Click "View" to [open the project in a new window](https://rm-weddingapp.herokuapp.com/)
+
+- - -
+
+## Testing
+
+The following considerations were highlighted during a tutoring session:
+
+* Given the time constraints, the initial project scope would be overly ambitious. Therefore, it will be crucial to employ an Agile approach to prioritize feature implementation in a logical sequence.
+* The OneToOne replationship between the User and the Event model may be unsuitable.
+
+### W3C Validator
+
+
+
+### Solved Bugs
+
+1. 
+
+2. 
+
+3. 
+
+4. 
+
+5. 
+
+6. 
+
+7. 
+
+8. 
+
+9. 
+
+10. 
+
+### Known Bugs
+
+1. 
+
+### Testing User Stories
+
+* First Time Visitors
+  * 
+
+  ![website]()
+
+  * 
+
+  *
+
+* Returning Users
+  *
+
+
+
+  * 
+ 
+
+### Lighthouse
+
+To assess the website's performance, accessibility, adherence to best practices, and search engine optimization, I utilized Lighthouse, a tool available within the Chrome Developer Tools.
+
+#### Index Page
+
+Add link to Lighthouse 
+
+### Full Testing
+
+In order to conduct a thorough examination of my website, I utilized a variety of browsers, including Google Chrome, Microsoft Edge, and Mozilla Firefox, as well as different devices such as the Lenovo ideapad 330S 14 inch laptop inch and Xiaomi Pocophone.  I was unable to test with the Safari browser as I do not have access to any Apple devices.
+
+Furthermore, I employed Google Chrome's developer tools to scrutinize each page and guarantee that they exhibited proper responsiveness across all screen sizes.
+
+Links.
+
+1. I conducted a comprehensive evaluation of every link featured on the index page, including nav elements and buttons, and found that all links performed as anticipated. Social links open to the correct websites in new windows.
+2. I conducted a comprehensive evaluation of every link featured on the guestlist page, including nav elements and buttons, and found that all links performed as anticipated.
+
+Forms
+
+I have decided to use Crispy Forms for its form validation capabilities.  
+1. 
+2. 
+3.
+4. 
+5. 
+6.
+
+- - -
+
+## Credits
+
+### Code Used
+
+
+### Content
+
+All content for the website was written by Robert Mundy.
+
+### Media
+
+#### Hero Image 
+
+### Acknowledgments
