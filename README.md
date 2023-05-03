@@ -32,7 +32,7 @@ Union Wedding App is an online wedding planning application that enables site us
 
 * When is the site user's wedding event
 * Who are the potential wedding guests
-* What are the wedding attendees' preferences
+* What are the wedding guests' details and preferences
 * How can the site users get in touch via social media
 
 ### User Stories
@@ -93,25 +93,51 @@ The website currently comprises three main pages: the landing page prior to logi
 
 * All website pages extend the base.html that includes:
 
-  * A header positioned at the top of the page, featuring the website name, Union, along with a responsive nav bar and a tagline offering the user "a helping hand for your big day". The nav bar is located in a familiar place and collapses to a hamburger icon on smaller devices so as not to crowd the screen and enhance the user experience. The nav bar initially displays three links for the unauthenticated user: Home, Sign Up, and Log In. When authenticated this changes to Home and Logout(username), and when the user has created a wedding Event the Guestlist link appears.  
+  * A header positioned at the top of the page, featuring the website name, Union, along with a responsive nav bar and a tagline offering the user "a helping hand for your big day". The nav bar is located in a familiar place and collapses to a hamburger icon on smaller devices so as not to crowd the screen and enhance the user experience. The nav bar initially displays three links for the unauthenticated user: Home, Sign Up, and Log In. When authenticated this changes to Home and Logout(username), and when the user has created a wedding Event the Guestlist link appears.
+
+    + [Header and unauthenticated user navbar](/static/images/nav_bar_active_page_highlighted.png)
+    + [Navbar variation: authenticated user that hasn't created an event](/static/images/new_user_no_event_navbar.png)
+    + [Navbar variation: authenticated user that has created an event](/static/images/authenticated_user_with_event_navbar.png)
 
   * A footer containing links to fictitious social media accounts; instagram, facebook and twitter. Icons were chosen to maintain a familiar and uncluttered appearance.
 
-* Home Page.
-  * Section 1
-  Section 1 content
-  * Section 2   
-  Section 2 content
-  * Section 3
-  Section 3 content
+* Home Page
+
+  ![Home Page (unauthenticated)](/static/images/home_page_hero_and_signup_login.png)
+  * A bold and clear tag line states to the user that the site offers "Wedding planning made easy".
+  * A succinct description of the site's core functionaily is detailed below; "Create guestlists, send RSVP invitations and view attendees via simple dashboards".
+  * An evocative hero image of a married couple appearing serene in a picturesque landscape is included to stir the emotions of the would-be site user.
+  * Large buttons sit beneath the site description encouraging the user to Sign Up or Log In.
 
 * Home Page (authenticated)
-  * Section 1
-  Section 1 content
+
+  The first time authenticated user is presented with two sections:
+  * Empty Event Card - This section encourages the user to create their event, which will unlock the guestlist area:
+  ![Create event card](/static/images/new_user_create_event_card.png)
+  * Empty event statistics card (Attendees) - This section details that the number of event guests created is currently 0, and advises that the user must "...create an event before adding guests".
+  ![Event statistics card](/static/images/event_statistics_card_new_user_no_event.png)
   
+  Having created an event, the authenticated user is presented with the following sections:
+
+  * Populated Event card - This section now displays details of the user's event: event name, event date, event time. A future iteration could allow the user to upload their own image.
+  ![Event details card](/static/images/event_details_card_populated.png)
+  * Populated event statistics card (Attendees) - This section now details the number of guests the user has created for their event along with a button prompting the user to Add Guests that links to the Guestlist page. Future iterations of this section could allow the user to apply filters to the guests e.g. attending, vegetarion, teetotal etc.
+  ![Event statistics card](/static/images/event_statistics_card_showing_guest_numbers.png)
+
+* Create Event 
+  ![Create Event](/static/images/create_event_form.png)
+  The first time authenticated user can navigate to the event creation page via the "Create Event" button on the homepage.  The user is then presented with a simple form requesting that they enter the Event name, Event date and Event time.
+  Form validation via Crispy Forms ensures all fields are populated and adhere to the Event model's specifications (see Full Testing for details).
+  If a user attempts to create a second event by manually adding '/create_event/' to the site's url they are presented with a message stating that their "..event has already been created".  A "Back" button reroutes the user to the homepage.
+  [Event already created message](/static/images/event_already_created_message.png)
+
 * Guestlist
-  * Section 1
-  Content
+  The guestlist only becomes visible following the creation of an event. The first time authenticated user is presented with a single section:
+  * Add guest - A simple form that enables the user to "Add Guest" by entering their guest's name. To simplify the process, I opted to populate a single name field initially and add the remaining guest details at a later stage.
+  ![Add guest form](/static/images/empty_guestlist_page.png)
+  Form validation via Crispy Forms ensures that each guest is unique to the user (not all users), and prompts when duplicate guest names are entered (see [Full Testing](#full-testing) for details).
+  * Guestlist - Once the first guest is added, a guestlist will appear next to the form.  Each list entry indicates that it is selectable by a change in colour on hover, and also details that the user can "click to edit".
+  ![Guestlist](/static/images/user_with_guest_added.png)
 
 * Future Implementations.
   * Allow users to create wedding invitations containing uploaded pictures and messages of their choosing.
