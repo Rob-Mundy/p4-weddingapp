@@ -47,7 +47,7 @@ Union Wedding App is an online wedding planning application that enables site us
 
 * USER STORY: Easy Navigation - As a **Site User** I can **easily navigate the site** so that **I don't get stuck**
 * USER STORY: View user-specific content - As a **Site User** I can **view my user-specific guestlist** so that **I don't accidentally contact people I don't know**
-* USER STORY: Create Wedding Event - As a **Site Admin** I can **create an event** so that **I can access site functionality**
+* USER STORY: Create Wedding Event - As a **Site User** I can **create an event** so that **I can access site functionality**
 * USER STORY: Edit Wedding Event - As a **Site User** I can **edit an event** so that **I can correct mistakes or accommdate changes**
 * USER STORY: Add Guests - As a **Site User** I can **add guests** so that **I can build a list of potential attendees**
 * USER STORY: Edit Guests - As a **Site User** I can **edit guests** so that **I can make alterations to a list of potential attendees**
@@ -96,7 +96,7 @@ The website currently comprises three main pages: the landing page prior to logi
 
 * All website pages extend the base.html that includes:
 
-  * A header positioned at the top of the page, featuring the website name, Union, along with a responsive nav bar and a tagline offering the user "a helping hand for your big day". The nav bar is located in a familiar place and collapses to a hamburger icon on smaller devices so as not to crowd the screen and enhance the user experience. The nav bar initially displays three links for the unauthenticated user: Home, Sign Up, and Log In. When authenticated this changes to Home and Logout(username), and when the user has created a wedding Event the Guestlist link appears.
+  * A header positioned at the top of the page, featuring the website name, Union, along with a responsive nav bar and a tagline offering the user "a helping hand for your big day". The nav bar is located in a familiar place and collapses to a hamburger icon on smaller devices so as to enhance the user experience and not crowd the screen. The nav bar initially displays three links for the unauthenticated user: Home, Sign Up, and Log In. When authenticated this changes to Home and Logout(username), and when the user has created a wedding Event the Guestlist link also appears.
 
     + [Header and unauthenticated user navbar](/static/images/nav_bar_active_page_highlighted.png)
     + [Navbar variation: authenticated user that hasn't created an event](/static/images/new_user_no_event_navbar.png)
@@ -109,7 +109,7 @@ The website currently comprises three main pages: the landing page prior to logi
 * Home Page
 
   ![Home Page (unauthenticated)](/static/images/home_page_hero_and_signup_login.png)
-  * A bold and clear tag line states to the user that the site offers "Wedding planning made easy".
+  * A bold and clear tagline states to the user that the site offers "Wedding planning made easy".
   * A succinct description of the site's core functionaily is detailed below; "Create guestlists, send RSVP invitations and view attendees via simple dashboards".
   * An evocative hero image of a married couple appearing serene in a picturesque landscape is included to stir the emotions of the would-be site user.
   * Large buttons sit beneath the site description encouraging the user to Sign Up or Log In.
@@ -126,7 +126,7 @@ The website currently comprises three main pages: the landing page prior to logi
 
   * Populated Event card - This section now displays details of the user's event: event name, event date, event time. A future iteration could allow the user to upload their own image.
   ![Event details card](/static/images/event_details_card_populated.png)
-  * Populated event statistics card (Attendees) - This section now details the number of guests the user has created for their event along with a button prompting the user to Add Guests that links to the Guestlist page. Future iterations of this section could allow the user to apply filters to the guests e.g. attending, vegetarion, teetotal etc.
+  * Populated event statistics card (Attendees) - This section now details the number of guests the user has created for their event along with a button prompting the user to Add Guests that links to the Guestlist page. Future iterations of this section could allow the user to apply filters to the guests e.g. attending, vegetarian, teetotal etc.
   ![Event statistics card](/static/images/event_statistics_card_showing_guest_numbers.png)
 
 * Guestlist
@@ -136,7 +136,7 @@ The website currently comprises three main pages: the landing page prior to logi
   Form validation via Crispy Forms ensures that each guest is unique to the user (not all site users), and prompts when duplicate guest names are entered (see [Full Testing](#full-testing) for details).
   * Guestlist - Once the first guest is added, a guestlist will appear next to the form.  Each list entry indicates that it is selectable by changing colour on hover, and also details that the user can "click to edit".
   ![Guestlist](/static/images/user_with_guest_added.png)
-  When a guest list item is clicked, the user is taken to the edit_guest page that allows the guest to either be edited or deleted, thus allowing full CRUD functionaility. 
+  When a guest list item is clicked, the user is taken to the Edit Guest page that allows the guest to either be edited or deleted, thus allowing full CRUD functionality. 
 * Future Implementations.
   * Allow users to create wedding invitations containing uploaded pictures and messages of their choosing.
   * Connect a mail account so that guests can be sent invites via email.
@@ -152,7 +152,7 @@ Throughout the coding process, I have made a conscious effort to prioritize webs
 
 ### Languages Used
 
-HTML and CSS and Python were used to create this website.
+HTML, CSS and Python were used to create this website.
 
 ### Frameworks, Libraries & Programs Used
 
@@ -172,7 +172,7 @@ Cloudinary - As a cloud image repositary
 
 Git - For version control.
 
-Github - To create issues from user stories and manage via Kanban board.
+[Github](https://github.com/users/Rob-Mundy/projects/3/views/1) - To create issues from user stories and manage via Kanban board.
 
 Bootstrap - Framework code used throughout the website including: Nav bar, Hero image, Guestlist listgroup. Amendments to Bootstrap classess and custom stylings were added via a separate style.css file saved in the static folder.
 
@@ -284,7 +284,6 @@ This project was deployed to Heroku via the following process:
 The following considerations were highlighted during a tutoring session:
 
 * Given the time constraints, the initial project scope would be overly ambitious. Therefore, it will be crucial to employ an Agile approach to prioritize feature implementation in a logical sequence.
-* The OneToOne replationship between the User and the Event model may be unsuitable.
 
 ### Validation
 
@@ -302,7 +301,7 @@ The following considerations were highlighted during a tutoring session:
     + Drop the database:
       Navigate to the Elephant SQL dashboard, select the correct database, and click the reset button.
     + Re-configure project:
-      In the GitPod Terminal, run the commands ""python3 manage.py makemigrations"" and ""python3 manage.py migrate"" to remake migrations and setup the new database.
+      In the GitPod Terminal, run the commands "python3 manage.py makemigrations" and "python3 manage.py migrate" to remake migrations and set up the new database.
       Create a new superuser by running: "python manage.py createsuperuser".
 
 2. I faced a challenge in preventing the entry of duplicate guests due to the slug field that's added within the post method of the Guest object. Since the guest_name field is not unique, it was important to differentiate between multiple individuals with the same name in order to access the edit_guest page via the slug field. I ultimately decided to allow only a single instance of each guest name per user, with variations created as necessary. However, implementing guest_name validation prior to the slugfield validation proved difficult. To address this issue, I pre-populated the user on the AddGuestForm as a hidden field and incorporated the following constraints to the Guest model, which were then validated by Crispy Forms.:
@@ -318,20 +317,20 @@ First Time Visitors
   + USER STORY: Understand the website - As a **First Time Visitor** I can **understand what the site offers** so that **I can decide whether to register**
       + The [landing page](/static/images/home_page_hero_and_signup_login.png) for the first time user clearly states the potential benefit to the user that your "Wedding plans..." will be "...made easy" as well as describing the features that the fully-fledged site will offer. See [Features](#features) for details.
   + USER STORY: Social Links - As a **First Time Visitor** I can **view social media account links** so that **I can get a better appreciation for the company and get in contact**
-      + A [Footer section with social links](/static/images/footer_with_social_links.png) can be found at the bottom of every page in a familiar and consistent position.  Users will social recognise the icons and unerstand they are clickable due to the change in colour when hovered over by the cursor.
+      + A [Footer section with social links](/static/images/footer_with_social_links.png) can be found at the bottom of every page in a familiar and consistent position.  Users will recognise the social media icons and understand they are clickable due to the change in colour when hovered over by the cursor.
   + USER STORY: Register Account - As a **First Time Visitor** I can **easily register my account** so that **I can access site functionality**
-      + First time users will encounter large and prominent buttons on the home page asking them to "Sign Up".  They are positioned directly below the website's statement of intent so that a user can make a decision and sign up without having to move around the screen.  
+      + First-time users will encounter large and prominent buttons on the home page asking them to "Sign Up".  They are positioned directly below the website's statement of intent so that a user can make a decision and sign up without having to move around the screen.  
       + Users are also able to sign up via a link in the navigation bar that disappears after authentication.
 
 Returning Users
   + USER STORY: Easy Navigation - As a **Site User** I can **easily navigate the site** so that **I don't get stuck**
       + The navigation header (navbar) is situated at the top of each page, consistent with most websites.
-      + To improve the user experience, the navbar is responsive and collapses to a hamburger icon on smaller screens so as not to take up too much screen real estate.
+      + To improve the user experience, the navbar is responsive and collapses to a hamburger icon on smaller screens.
       + The navbar headings vary depending on the user's journey through the site. See [Features](#features) for details.  
   + USER STORY: View user-specific content - As a **Site User** I can **view my user-specific guestlist** so that **I don't accidentally contact people I don't know**
       + Filters are applied to the class-based views so that only objects relating to the authenticated user are displayed. 
       + 404 errors are returned if the user attempts to access an event or guest id that relates to another user.
-  + USER STORY: Create Wedding Event - As a **Site Admin** I can **create an event** so that **I can access site functionality**
+  + USER STORY: Create Wedding Event - As a **Site User** I can **create an event** so that **I can access site functionality**
     + The first time authenticated user can navigate to the event creation page via the "Create Event" button on the homepage.  The user is then presented with a simple form requesting that they enter the Event name, Event date and Event time.
     ![Create Event](/static/images/create_event_form.png)
     + Form validation via Crispy Forms ensures all fields are populated and adhere to the Event model's specifications (see [Full Testing](#full-testing) for details).
