@@ -15,10 +15,6 @@ class Event(models.Model):
         default=int(1), related_name='events'
         )
 
-    # confirmed_attendees = models.IntegerField()
-    # declined_attendees = models.IntegerField()
-    # unconfirmed_attendeed = models.IntegerField()
-
     def __str__(self):
         return self.event_name
 

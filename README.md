@@ -115,7 +115,7 @@ The website currently comprises three main pages: the landing page prior to logi
 
 * Future Implementations.
   * Allow users to create wedding invitations containing uploaded pictures and messages of their choosing.
-  * Connect a mail account so that people in the Guest class model can be sent invites via email.
+  * Connect a mail account so that guests can be sent invites via email.
   * Enhance the Attendees card on the homepage to display various statistics such as total guests invited, total guests attending, as well as tallies of various dietary requirements e.g. 10 x vegetarians, 5 x teetotal.
 
 ### Accessibility
@@ -268,25 +268,17 @@ The following considerations were highlighted during a tutoring session:
 
 ### Solved Bugs
 
-1. 
+1. I twice attempted to implement AJAX to update the guestlist page without requiring a page refresh.  The first occasion was with HTMX, which required a change to my model.  Unfortunately, the changes created issues with the database which meant that it had to be dropped. In order to do this, the following process was observed: 
+    + Remove Django migrations:
+      Remove all migrations files within the project. Go through each of the project apps' migration folders and remove everything inside except the __init__.py file.
+    + Drop the database:
+      Navigate to the Elephant SQL dashboard, select the correct database, and click the reset button.
+    + Re-configure project:
+      In the GitPod Terminal, run the commands ""python3 manage.py makemigrations"" and ""python3 manage.py migrate"" to remake migrations and setup the new database.
+      Create a new superuser by running: "python manage.py createsuperuser".
 
-2. 
-
-3. 
-
-4. 
-
-5. 
-
-6. 
-
-7. 
-
-8. 
-
-9. 
-
-10. 
+2. "I faced a challenge in preventing the entry of duplicate guests due to the slug field that's added within the post method of the Guest object. Since the guest_name field is not unique, it was important to differentiate between multiple individuals with the same name in order to access the edit_guest page via the slug field. I ultimately decided to allow only a single instance of each guest name per user, with variations created as necessary. However, implementing guest_name validation prior to the slugfield validation proved difficult. To address this issue, I pre-populated the user on the AddGuestForm as a hidden field and incorporated the following constraints to the Guest model, which were then validated by Crispy Forms.:
+constraints = [models.UniqueConstraint(fields=['user', 'guest_name'],  name='unique guest for each user')]"
 
 ### Known Bugs
 
@@ -317,7 +309,7 @@ To assess the website's performance, accessibility, adherence to best practices,
 
 #### Index Page
 
-Add link to Lighthouse 
+![Lighthouse desktop score for index.html](/static/images/lighthouse_home_page_desktop.png)
 
 ### Full Testing
 
@@ -332,13 +324,35 @@ Links.
 
 Forms
 
-I have decided to use Crispy Forms for its form validation capabilities.  
-1. 
-2. 
-3.
-4. 
-5. 
-6.
+I opted to utilize Crispy Forms for its powerful form validation features. I thoroughly tested the forms to ensure they functioned correctly and effectively alerted users when incomplete or inaccurate information was provided. Here are the results of the tests:
+
+1. Sign-up form
+
+    + [sign up form validation: username not unique](/static/images/sign_up_form_validation_duplicate_username.png)
+    + [sign up form validation: email doesn't conform](/static/images/form_validation_email_prompt.png)
+    + [sign up form validation: password too common](/static/images/sign_up_form_validation_common_password.png)
+    + [sign up form validation: password mismatch](/static/images/sign_up_form_validation_password_mismatch.png)
+
+2. Create event form
+
+    + [create event form validation: invalid date](/static/images/create_event_date_validation_prompt.png) 
+    + [create event form validation: invalid time](/static/images/create_event_form_validation_time.png)
+
+3. Edit event form
+
+    + [edit event form validation: empty event name](/static/images/edit_event_form_validation_empty_event_name.png)
+
+4. Add guest form
+
+    + [add guest form validation: empty guest name](/static/images/add_guest_form_validation_empty_guest_name.png)
+
+    + [add guest form validation: duplicate guest name](/static/images/add_guest_form_guest_duplication_prompt.png)
+
+5. Edit guest form
+
+    + [edit guest form validation: email doesn't conform](/static/images/edit_guest_form_validation_email.png)
+
+    + [edit guest form validation: dietary requirements missing](/static/images/edit_guest_form_validation_dietary_requirements.png)
 
 - - -
 
