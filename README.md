@@ -46,7 +46,6 @@ Union Wedding App is an online wedding planning application that enables site us
 #### Returning User Goals
 
 * USER STORY: Easy Navigation - As a **Site User** I can **easily navigate the site** so that **I don't get stuck**
-* USER STORY: Register Account - As a **First Time Visitor** I can **easily register my account** so that **I can access site functionality**
 * USER STORY: View user-specific content - As a **Site User** I can **view my user-specific guestlist** so that **I don't accidentally contact people I don't know**
 * USER STORY: Create Wedding Event - As a **Site Admin** I can **create an event** so that **I can access site functionality**
 * USER STORY: Edit Wedding Event - As a **Site User** I can **edit an event** so that **I can correct mistakes or accommdate changes**
@@ -105,6 +104,8 @@ The website currently comprises three main pages: the landing page prior to logi
 
   * A footer containing links to fictitious social media accounts; instagram, facebook and twitter. Icons were chosen to maintain a familiar and uncluttered appearance.
 
+    [Footer section with social links](/static/images/footer_with_social_links.png)
+
 * Home Page
 
   ![Home Page (unauthenticated)](/static/images/home_page_hero_and_signup_login.png)
@@ -128,21 +129,14 @@ The website currently comprises three main pages: the landing page prior to logi
   * Populated event statistics card (Attendees) - This section now details the number of guests the user has created for their event along with a button prompting the user to Add Guests that links to the Guestlist page. Future iterations of this section could allow the user to apply filters to the guests e.g. attending, vegetarion, teetotal etc.
   ![Event statistics card](/static/images/event_statistics_card_showing_guest_numbers.png)
 
-* Create Event 
-  ![Create Event](/static/images/create_event_form.png)
-  The first time authenticated user can navigate to the event creation page via the "Create Event" button on the homepage.  The user is then presented with a simple form requesting that they enter the Event name, Event date and Event time.
-  Form validation via Crispy Forms ensures all fields are populated and adhere to the Event model's specifications (see Full Testing for details).
-  If a user attempts to create a second event by manually adding '/create_event/' to the site's url they are presented with a message stating that their "..event has already been created".  A "Back" button reroutes the user to the homepage.
-  [Event already created message](/static/images/event_already_created_message.png)
-
 * Guestlist
   The guestlist only becomes visible following the creation of an event. The first time authenticated user is presented with a single section:
   * Add guest - A simple form that enables the user to "Add Guest" by entering their guest's name. To simplify the process, I opted to populate a single name field initially and add the remaining guest details at a later stage.
   ![Add guest form](/static/images/empty_guestlist_page.png)
-  Form validation via Crispy Forms ensures that each guest is unique to the user (not all users), and prompts when duplicate guest names are entered (see [Full Testing](#full-testing) for details).
-  * Guestlist - Once the first guest is added, a guestlist will appear next to the form.  Each list entry indicates that it is selectable by a change in colour on hover, and also details that the user can "click to edit".
+  Form validation via Crispy Forms ensures that each guest is unique to the user (not all site users), and prompts when duplicate guest names are entered (see [Full Testing](#full-testing) for details).
+  * Guestlist - Once the first guest is added, a guestlist will appear next to the form.  Each list entry indicates that it is selectable by changing colour on hover, and also details that the user can "click to edit".
   ![Guestlist](/static/images/user_with_guest_added.png)
-
+  When a guest list item is clicked, the user is taken to the edit_guest page that allows the guest to either be edited or deleted, thus allowing full CRUD functionaility. 
 * Future Implementations.
   * Allow users to create wedding invitations containing uploaded pictures and messages of their choosing.
   * Connect a mail account so that guests can be sent invites via email.
@@ -320,20 +314,50 @@ constraints = [models.UniqueConstraint(fields=['user', 'guest_name'],  name='uni
 
 ### Testing User Stories
 
-* First Time Visitors
-  * USER STORY: Understand the website - As a **First Time Visitor** I can **understand what the site offers** so that **I can decide whether to register**
-  * USER STORY: Social Links - As a **First Time Visitor** I can **view social media account links** so that **I can get a better appreciation for the company and get in contact**
-  * USER STORY: Register Account - As a **First Time Visitor** I can **easily register my account** so that **I can access site functionality**
+First Time Visitors
+  + USER STORY: Understand the website - As a **First Time Visitor** I can **understand what the site offers** so that **I can decide whether to register**
+      + The [landing page](/static/images/home_page_hero_and_signup_login.png) for the first time user clearly states the potential benefit to the user that your "Wedding plans..." will be "...made easy" as well as describing the features that the fully-fledged site will offer. See [Features](#features) for details.
+  + USER STORY: Social Links - As a **First Time Visitor** I can **view social media account links** so that **I can get a better appreciation for the company and get in contact**
+      + A [Footer section with social links](/static/images/footer_with_social_links.png) can be found at the bottom of every page in a familiar and consistent position.  Users will social recognise the icons and unerstand they are clickable due to the change in colour when hovered over by the cursor.
+  + USER STORY: Register Account - As a **First Time Visitor** I can **easily register my account** so that **I can access site functionality**
+      + First time users will encounter large and prominent buttons on the home page asking them to "Sign Up".  They are positioned directly below the website's statement of intent so that a user can make a decision and sign up without having to move around the screen.  
+      + Users are also able to sign up via a link in the navigation bar that disappears after authentication.
 
-* Returning Users
-  * USER STORY: Easy Navigation - As a **Site User** I can **easily navigate the site** so that **I don't get stuck**
-  * USER STORY: Register Account - As a **First Time Visitor** I can **easily register my account** so that **I can access site functionality**
-  * USER STORY: View user-specific content - As a **Site User** I can **view my user-specific guestlist** so that **I don't accidentally contact people I don't know**
-  * USER STORY: Create Wedding Event - As a **Site Admin** I can **create an event** so that **I can access site functionality**
-  * USER STORY: Edit Wedding Event - As a **Site User** I can **edit an event** so that **I can correct mistakes or accommdate changes**
-  * USER STORY: Add Guests - As a **Site User** I can **add guests** so that **I can build a list of potential attendees**
-  * USER STORY: Edit Guests - As a **Site User** I can **edit guests** so that **I can make alterations to a list of potential attendees**
-  * USER STORY: Delete Guests - As a **Site User** I can **delete guests** so that **I can correct mistakes in a list of potential attendees**
+Returning Users
+  + USER STORY: Easy Navigation - As a **Site User** I can **easily navigate the site** so that **I don't get stuck**
+      + The navigation header (navbar) is situated at the top of each page, consistent with most websites.
+      + To improve the user experience, the navbar is responsive and collapses to a hamburger icon on smaller screens so as not to take up too much screen real estate.
+      + The navbar headings vary depending on the user's journey through the site. See [Features](#features) for details.  
+  + USER STORY: View user-specific content - As a **Site User** I can **view my user-specific guestlist** so that **I don't accidentally contact people I don't know**
+      + Filters are applied to the class-based views so that only objects relating to the authenticated user are displayed. 
+      + 404 errors are returned if the user attempts to access an event or guest id that relates to another user.
+  + USER STORY: Create Wedding Event - As a **Site Admin** I can **create an event** so that **I can access site functionality**
+    + The first time authenticated user can navigate to the event creation page via the "Create Event" button on the homepage.  The user is then presented with a simple form requesting that they enter the Event name, Event date and Event time.
+    ![Create Event](/static/images/create_event_form.png)
+    + Form validation via Crispy Forms ensures all fields are populated and adhere to the Event model's specifications (see [Full Testing](#full-testing) for details).
+    + If a user attempts to create a second event by manually adding '/create_event/' to the site's url they are presented with a message stating that their "..event has already been created".  A "Back" button reroutes the user to the homepage.
+    [Event already created message](/static/images/event_already_created_message.png)
+  + USER STORY: Edit Wedding Event - As a **Site User** I can **edit an event** so that **I can correct mistakes or accommdate changes**
+    + An [Edit Event button](/static/images/event_details_card_populated.png) can be found underneath the user's event details on the authenticated user's homepage.
+    + This hyperlink takes the user to the edit event page containing a form prepopulated with their event details.  
+    + The user is available to amend the Event name, Event date and Event time.
+    + Crispy Forms handles the form validation and ensures adherence with the Event model's specifications (see [Testing](#testing) for details).
+    + Upon submitting the form, the user is redirected to the homepage which now displays their amended event information.
+  + USER STORY: Add Guests - As a **Site User** I can **add guests** so that **I can build a list of potential attendees**
+    + When authenticated, and having created a wedding event, site users can easily add guests via the Add Guest form on the Guestlist page (see [Features](#features) for details).
+    + Hyperlinks to the Guestlist are found multiple locations. They are located in buttons on the homepage (Attendees card) as well the navbar.
+    + Future iterations could allow the user to export the guestlist to a spreadsheet. 
+  + USER STORY: Edit Guests - As a **Site User** I can **edit guests** so that **I can make alterations to a list of potential attendees**
+    + Users can easily edit guests by clicking on a guest list entry in the Guestlist (see [Features](#features) for details).
+    + The user is navigated to the corresponding Edit Guest page that uses the guest slugfield to get the relevant data to populate the form.
+    + The [Edit Guest form](/static/images/edit_guest_form.png) displays guest details and their event preferences.
+    + Crispy Forms handles the data validation to ensure compliance with the model's specifications (see [Full Testing](#full-testing) for details).
+    + On submission, users are navigated back to the Guestlist page.
+  + USER STORY: Delete Guests - As a **Site User** I can **delete guests** so that **I can correct mistakes in a list of potential attendees**
+    + Sites users are able to delete guests via the Edit Guest form detailed above.
+    + To avoid any accidental guest deletions, users are presented with a screen asking "Are you sure you want to delete guest?"
+    [Delete guest message](/static/images/delete_guest_prompt.png)
+    + Upon confirmation of request to delete, users are redirected to the Guestlist page where their deleted guest will no longer exits.
 
 ### Lighthouse
 
@@ -352,7 +376,8 @@ Furthermore, I employed Google Chrome's developer tools to scrutinize each page 
 Links.
 
 1. I conducted a comprehensive evaluation of every link featured on the index page, including nav elements and buttons, and found that all links performed as anticipated. Social links open to the correct websites in new windows.
-2. I conducted a comprehensive evaluation of every link featured on the guestlist page, including nav elements and buttons, and found that all links performed as anticipated.
+2. I conducted a comprehensive evaluation of every link featured on the guestlist page (and sub-pages), including nav elements and buttons, and found that all links performed as anticipated.
+3. I conducted a comprehensive evaluation of every link featured on the create_event and edit_event pages, including nav elements and buttons, and found that all links performed as anticipated. Social links open to the correct websites in new windows.
 
 Forms
 
@@ -401,6 +426,8 @@ All content for the website was written by Robert Mundy.
 
 #### Hero Image and Event Details Card
 
-This image was sourced via my [depositphotos.com](https://depositphotos.com/123192248/stock-photo-wedding-couple-in-evening.html) subscription
+This image was sourced from [depositphotos.com](https://depositphotos.com/123192248/stock-photo-wedding-couple-in-evening.html) with a subscription
 
 ### Acknowledgments
+
+I'd like to thank my mentor, Jubril Akolade, for his assistance.
