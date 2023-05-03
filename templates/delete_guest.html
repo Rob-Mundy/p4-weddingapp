@@ -12,10 +12,10 @@
         <div class="card mb-3">
 
           <h3 class="text-center">Delete Guest</h3>
-          <form method="post" style="margin-top: 1.3em;" action="">
+          <form method="post" style="margin-top: 1.3em;">
             {% csrf_token %}
             <p>Are you sure you want to delete guest?</p><br>
-            <input class="btn btn-outline-secondary btn-md px-4 mt-3 mb-3" type="submit" value="Yes" />
+            <input class="btn btn-outline-secondary btn-md px-4 mt-3 mb-3" type="submit" value="Yes">
             <a href="{% url 'guestlist' %}"><div class="btn btn-secondary btn-md px-4 me-md-2 mt-3 mb-3">Cancel</div></a> 
           </form>
 
