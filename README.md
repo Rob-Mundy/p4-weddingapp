@@ -325,6 +325,7 @@ First Time Visitors
 Returning Users
   + USER STORY: Easy Navigation - As a **Site User** I can **easily navigate the site** so that **I don't get stuck**
       + The navigation header (navbar) is situated at the top of each page, consistent with most websites.
+      + Active pages are indicated by **bold** navigation links.
       + To improve the user experience, the navbar is responsive and collapses to a hamburger icon on smaller screens.
       + The navbar headings vary depending on the user's journey through the site. See [Features](#features) for details.  
   + USER STORY: View user-specific content - As a **Site User** I can **view my user-specific guest list** so that **I don't accidentally contact people I don't know**
@@ -412,6 +413,10 @@ I opted to utilize Crispy Forms for its powerful form validation features. I tho
 
     + [edit guest form validation: email doesn't conform](/static/images/edit_guest_form_validation_email.png)
     + [edit guest form validation: dietary requirements missing](/static/images/edit_guest_form_validation_dietary_requirements.png)
+
+Modals
+
+I conducted a comprehensive evaluation of every modal triggered on the forms mentioned above and found that all performed as anticipated. I wasn't able to capture screenshots due to the short timeout duration.
 
 - - -
 
