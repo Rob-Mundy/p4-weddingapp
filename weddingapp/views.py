@@ -6,7 +6,7 @@ from .forms import CreateEventForm, EditEventForm, AddGuestForm, EditGuestForm
 from slugify import slugify
 from django.core.exceptions import ValidationError
 from django.db.models import Count
-from django.contrib import messages # this is new code
+from django.contrib import messages
 
 
 class EventList(generic.ListView):
