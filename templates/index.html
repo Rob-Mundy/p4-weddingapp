@@ -14,7 +14,7 @@
           <!-- Wedding image -->
           <div class="card-body">
             <img class="card-img-top"
-              src="https://res.cloudinary.com/dkdheuvab/image/upload/v1682793109/couple_on_hill_small_axbyig.jpg"
+              src="https://res.cloudinary.com/dkdheuvab/image/upload/v1683192631/married_couple_on_a_hill_small_ushhdc.webp"
               alt="Married couple in field banner image">
 
             {% for event in events %}
@@ -53,9 +53,9 @@
             <h3 class="card-title">Attendees</h3>
             <p class="card-text">Number of guests : {{ event_stats.guests__count }}</p>
             
-            <!-- Button that links to guestlist -->
+            <!-- Button that links to guest list -->
             {% if user.events %}
-            <a href="{% url 'guestlist' %}" class="btn btn-secondary btn-md px-4 me-md-2">Add Guests</a>
+            <a href="{% url 'guest_list' %}" class="btn btn-secondary btn-md px-4 me-md-2">Add Guests</a>
             
             <!-- Prompt message to create an event if one doesn't exist -->
             {% else %}
@@ -78,12 +78,12 @@
     <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
       <div class="col-10 col-sm-8 col-lg-6">
         <img id="hero-couple"
-          src="https://res.cloudinary.com/dkdheuvab/image/upload/v1682792695/Depositphotos_123192248_S_dfsltb.jpg"
+          src="https://res.cloudinary.com/dkdheuvab/image/upload/v1683192631/married_couple_on_a_hill_kr6kjg.webp"
           class="d-block mx-lg-auto img-fluid" alt="Married couple in a field" width="700" height="500" loading="lazy">
       </div>
       <div class="col-lg-6">
         <h1 class="display-5 fw-bold lh-1 mb-3">Wedding planning made easy</h1>
-        <p class="lead">Create guestlists, send RSVP invitations and view attendees via simple dashboards</p>
+        <p class="lead">Create guest lists, send RSVP invitations and view attendees via simple dashboards</p>
         <div class="d-grid gap-2 d-md-flex justify-content-md-start">
           <a href="{% url 'account_signup' %}" class="btn btn-secondary btn-lg px-4 me-md-2">Sign
             Up</a>

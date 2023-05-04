@@ -26,7 +26,7 @@ The Union Wedding App website is designed to be responsive, allowing visitors to
 
 ### Initial Discussion
 
-Union Wedding App is an online wedding planning application that enables site users to create and manage guestlists and record their attendees’ preferences.  Future developments would include the ability to design and send wedding invitations to guests via email, as well as receive and update results from guests’ RSVPs.
+Union Wedding App is an online wedding planning application that enables site users to create and manage guest lists and record their attendees’ preferences.  Future developments would include the ability to design and send wedding invitations to guests via email, as well as receive and update results from guests’ RSVPs.
 
 #### Key information for the site
 
@@ -46,7 +46,7 @@ Union Wedding App is an online wedding planning application that enables site us
 #### Returning User Goals
 
 * USER STORY: Easy Navigation - As a **Site User** I can **easily navigate the site** so that **I don't get stuck**
-* USER STORY: View user-specific content - As a **Site User** I can **view my user-specific guestlist** so that **I don't accidentally contact people I don't know**
+* USER STORY: View user-specific content - As a **Site User** I can **view my user-specific guest list** so that **I don't accidentally contact people I don't know**
 * USER STORY: Create Wedding Event - As a **Site User** I can **create an event** so that **I can access site functionality**
 * USER STORY: Edit Wedding Event - As a **Site User** I can **edit an event** so that **I can correct mistakes or accommdate changes**
 * USER STORY: Add Guests - As a **Site User** I can **add guests** so that **I can build a list of potential attendees**
@@ -92,11 +92,11 @@ An initial schema for the class-based models was also drafted in Excel:
 
 ### Features
 
-The website currently comprises three main pages: the landing page prior to login, the homepage visible to the authenticated user, and the guestlist page. Available pages change according to user actions as explained below.
+The website currently comprises three main pages: the landing page prior to login, the homepage visible to the authenticated user, and the guest list page. Available pages change according to user actions as explained below.
 
 * All website pages extend the base.html that includes:
 
-  * A header positioned at the top of the page, featuring the website name, Union, along with a responsive nav bar and a tagline offering the user "a helping hand for your big day". The nav bar is located in a familiar place and collapses to a hamburger icon on smaller devices so as to enhance the user experience and not crowd the screen. The nav bar initially displays three links for the unauthenticated user: Home, Sign Up, and Log In. When authenticated this changes to Home and Logout(username), and when the user has created a wedding Event the Guestlist link also appears.
+  * A header positioned at the top of the page, featuring the website name, Union, along with a responsive nav bar and a tagline offering the user "a helping hand for your big day". The nav bar is located in a familiar place and collapses to a hamburger icon on smaller devices so as to enhance the user experience and not crowd the screen. The nav bar initially displays three links for the unauthenticated user: Home, Sign Up, and Log In. When authenticated this changes to Home and Logout(username), and when the user has created a wedding Event the Guest list link also appears.
 
     + [Header and unauthenticated user navbar](/static/images/nav_bar_active_page_highlighted.png)
     + [Navbar variation: authenticated user that hasn't created an event](/static/images/new_user_no_event_navbar.png)
@@ -110,14 +110,14 @@ The website currently comprises three main pages: the landing page prior to logi
 
   ![Home Page (unauthenticated)](/static/images/home_page_hero_and_signup_login.png)
   * A bold and clear tagline states to the user that the site offers "Wedding planning made easy".
-  * A succinct description of the site's core functionaily is detailed below; "Create guestlists, send RSVP invitations and view attendees via simple dashboards".
+  * A succinct description of the site's core functionaily is detailed below; "Create guest lists, send RSVP invitations and view attendees via simple dashboards".
   * An evocative hero image of a married couple appearing serene in a picturesque landscape is included to stir the emotions of the would-be site user.
   * Large buttons sit beneath the site description encouraging the user to Sign Up or Log In.
 
 * Home Page (authenticated)
 
   The first time authenticated user is presented with two sections:
-  * Empty Event Card - This section encourages the user to create their event, which will unlock the guestlist area:
+  * Empty Event Card - This section encourages the user to create their event, which will unlock the guest list area:
   ![Create event card](/static/images/new_user_create_event_card.png)
   * Empty event statistics card (Attendees) - This section details that the number of event guests created is currently 0, and advises that the user must "...create an event before adding guests".
   ![Event statistics card](/static/images/event_statistics_card_new_user_no_event.png)
@@ -126,16 +126,16 @@ The website currently comprises three main pages: the landing page prior to logi
 
   * Populated Event card - This section now displays details of the user's event: event name, event date, event time. A future iteration could allow the user to upload their own image.
   ![Event details card](/static/images/event_details_card_populated.png)
-  * Populated event statistics card (Attendees) - This section now details the number of guests the user has created for their event along with a button prompting the user to Add Guests that links to the Guestlist page. Future iterations of this section could allow the user to apply filters to the guests e.g. attending, vegetarian, teetotal etc.
+  * Populated event statistics card (Attendees) - This section now details the number of guests the user has created for their event along with a button prompting the user to Add Guests that links to the Guest list page. Future iterations of this section could allow the user to apply filters to the guests e.g. attending, vegetarian, teetotal etc.
   ![Event statistics card](/static/images/event_statistics_card_showing_guest_numbers.png)
 
-* Guestlist
-  The guestlist only becomes visible following the creation of an event. The first time authenticated user is presented with a single section:
+* Guest list
+  The guest list only becomes visible following the creation of an event. The first time authenticated user is presented with a single section:
   * Add guest - A simple form that enables the user to "Add Guest" by entering their guest's name. To simplify the process, I opted to populate a single name field initially and add the remaining guest details at a later stage.
-  ![Add guest form](/static/images/empty_guestlist_page.png)
+  ![Add guest form](/static/images/empty_guest list_page.png)
   Form validation via Crispy Forms ensures that each guest is unique to the user (not all site users), and prompts when duplicate guest names are entered (see [Full Testing](#full-testing) for details).
-  * Guestlist - Once the first guest is added, a guestlist will appear next to the form.  Each list entry indicates that it is selectable by changing colour on hover, and also details that the user can "click to edit".
-  ![Guestlist](/static/images/user_with_guest_added.png)
+  * Guest list - Once the first guest is added, a guest list will appear next to the form.  Each list entry indicates that it is selectable by changing colour on hover, and also details that the user can "click to edit".
+  ![Guest list](/static/images/user_with_guest_added.png)
   When a guest list item is clicked, the user is taken to the Edit Guest page that allows the guest to either be edited or deleted, thus allowing full CRUD functionality. 
 * Future Implementations.
   * Allow users to create wedding invitations containing uploaded pictures and messages of their choosing.
@@ -174,7 +174,7 @@ Git - For version control.
 
 [Github](https://github.com/users/Rob-Mundy/projects/3/views/1) - To create issues from user stories and manage via Kanban board.
 
-Bootstrap - Framework code used throughout the website including: Nav bar, Hero image, Guestlist listgroup. Amendments to Bootstrap classess and custom stylings were added via a separate style.css file saved in the static folder.
+Bootstrap - Framework code used throughout the website including: Nav bar, Hero image, Guest list listgroup. Amendments to Bootstrap classess and custom stylings were added via a separate style.css file saved in the static folder.
 
 Google Fonts - To select and import the fonts used throughout the website.
 
@@ -295,7 +295,7 @@ The following considerations were highlighted during a tutoring session:
 
 ### Solved Bugs
 
-1. I twice attempted to implement AJAX to update the guestlist page without requiring a page refresh.  The first occasion was with HTMX, which required a change to my model.  Unfortunately, the changes created issues with the database which meant that it had to be dropped. In order to do this, the following process was observed: 
+1. I twice attempted to implement AJAX to update the guest list page without requiring a page refresh.  The first occasion was with HTMX, which required a change to my model.  Unfortunately, the changes created issues with the database which meant that it had to be dropped. In order to do this, the following process was observed: 
     + Remove Django migrations:
       Remove all migrations files within the project. Go through each of the project apps' migration folders and remove everything inside except the __init__.py file.
     + Drop the database:
@@ -309,7 +309,7 @@ constraints = [models.UniqueConstraint(fields=['user', 'guest_name'],  name='uni
 
 ### Known Bugs
 
-1. Although no visible links to the guestlist exist before an event is created, users can manually add '/guestlist/' to the website's URL, resulting in a 404 page not found error. To improve user experience, I plan to include a message that redirects users to the home or create event page instead of reaching a dead end. 
+1. Although no visible links to the guest list exist before an event is created, users can manually add '/guest_list/' to the website's URL, resulting in a 404 page not found error. To improve user experience, I plan to include a message that redirects users to the home or create event page instead of reaching a dead end. 
 
 ### Testing User Stories
 
@@ -327,7 +327,7 @@ Returning Users
       + The navigation header (navbar) is situated at the top of each page, consistent with most websites.
       + To improve the user experience, the navbar is responsive and collapses to a hamburger icon on smaller screens.
       + The navbar headings vary depending on the user's journey through the site. See [Features](#features) for details.  
-  + USER STORY: View user-specific content - As a **Site User** I can **view my user-specific guestlist** so that **I don't accidentally contact people I don't know**
+  + USER STORY: View user-specific content - As a **Site User** I can **view my user-specific guest list** so that **I don't accidentally contact people I don't know**
       + Filters are applied to the class-based views so that only objects relating to the authenticated user are displayed. 
       + 404 errors are returned if the user attempts to access an event or guest id that relates to another user.
   + USER STORY: Create Wedding Event - As a **Site User** I can **create an event** so that **I can access site functionality**
@@ -343,20 +343,20 @@ Returning Users
     + Crispy Forms handles the form validation and ensures adherence with the Event model's specifications (see [Testing](#testing) for details).
     + Upon submitting the form, the user is redirected to the homepage which now displays their amended event information.
   + USER STORY: Add Guests - As a **Site User** I can **add guests** so that **I can build a list of potential attendees**
-    + When authenticated, and having created a wedding event, site users can easily add guests via the Add Guest form on the Guestlist page (see [Features](#features) for details).
-    + Hyperlinks to the Guestlist are found multiple locations. They are located in buttons on the homepage (Attendees card) as well the navbar.
-    + Future iterations could allow the user to export the guestlist to a spreadsheet. 
+    + When authenticated, and having created a wedding event, site users can easily add guests via the Add Guest form on the Guest list page (see [Features](#features) for details).
+    + Hyperlinks to the Guest list are found multiple locations. They are located in buttons on the homepage (Attendees card) as well the navbar.
+    + Future iterations could allow the user to export the guest list to a spreadsheet. 
   + USER STORY: Edit Guests - As a **Site User** I can **edit guests** so that **I can make alterations to a list of potential attendees**
-    + Users can easily edit guests by clicking on a guest list entry in the Guestlist (see [Features](#features) for details).
+    + Users can easily edit guests by clicking on a guest list entry in the Guest list (see [Features](#features) for details).
     + The user is navigated to the corresponding Edit Guest page that uses the guest slugfield to get the relevant data to populate the form.
     + The [Edit Guest form](/static/images/edit_guest_form.png) displays guest details and their event preferences.
     + Crispy Forms handles the data validation to ensure compliance with the model's specifications (see [Full Testing](#full-testing) for details).
-    + On submission, users are navigated back to the Guestlist page.
+    + On submission, users are navigated back to the Guest list page.
   + USER STORY: Delete Guests - As a **Site User** I can **delete guests** so that **I can correct mistakes in a list of potential attendees**
     + Sites users are able to delete guests via the Edit Guest form detailed above.
     + To avoid any accidental guest deletions, users are presented with a screen asking "Are you sure you want to delete guest?"
     [Delete guest message](/static/images/delete_guest_prompt.png)
-    + Upon confirmation of request to delete, users are redirected to the Guestlist page where their deleted guest will no longer exits.
+    + Upon confirmation of request to delete, users are redirected to the Guest list page where their deleted guest will no longer exits.
 
 ### Lighthouse
 
@@ -375,12 +375,12 @@ Furthermore, I employed Google Chrome's developer tools to scrutinize each page 
 Links.
 
 1. I conducted a comprehensive evaluation of every link featured on the index page, including nav elements and buttons, and found that all links performed as anticipated. Social links open to the correct websites in new windows.
-2. I conducted a comprehensive evaluation of every link featured on the guestlist page (and sub-pages), including nav elements and buttons, and found that all links performed as anticipated.
+2. I conducted a comprehensive evaluation of every link featured on the guest list page (and sub-pages), including nav elements and buttons, and found that all links performed as anticipated.
 3. I conducted a comprehensive evaluation of every link featured on the create_event and edit_event pages, including nav elements and buttons, and found that all links performed as anticipated. Social links open to the correct websites in new windows.
 
 Forms
 
-I opted to utilize Crispy Forms for its powerful form validation features. I thoroughly tested the forms to ensure they functioned correctly and effectively alerted users when incomplete or inaccurate information was provided. Here are the results of the tests:
+I opted to utilize Crispy Forms for its powerful form validation features. I thoroughly tested the forms to ensure they functioned correctly and effectively alerted users when incomplete or inaccurate information was provided. Each form contains a csrf_token.  Unfortunately I didn't have tie to perform any automated testing, so here are the results of the manual tests:
 
 1. Sign-up form
 
@@ -416,10 +416,15 @@ I opted to utilize Crispy Forms for its powerful form validation features. I tho
 
 ### Code Used
 
++ [djangoproject] https://www.djangoproject.com/ was leant on heavily for instructions on how to structure code.
+
++ The [I Think Therefore I Blog](https://github.com/Rob-Mundy/djangoBlog) inspired much of the general layout, naming conventions and design cues. This includes, but is not limited to: class-based model formation, section dimensions, use of fontawesome icons, use of social icons in the footer, use of CrispyForms and Allauth. Given the widespread use of these design elements and extensions, many of which being "best practice" for user experience, I haven't credited them specifically. 
 
 ### Content
 
 All content for the website was written by Robert Mundy.
+
+Please note that references to the "Guestlist" on the website were changed to "Guest List" after screenshots were taken.  "Guestlist" is an American-ism, so the text had to be amended.
 
 ### Media
 

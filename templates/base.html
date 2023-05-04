@@ -50,7 +50,7 @@
                     </li>
                     {% elif user.events %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'guestlist' %}">Guestlist</a>
+                        <a class="nav-link" href="{% url 'guest_list' %}">Guest List</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'account_logout' %}">Log Out ({{request.user.username}})</a>
@@ -69,6 +69,9 @@
     </nav>
 
     <main class="px-3">
+        <!-- modal messages displayed here -->
+        {% include 'messages.html' %}
+        
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}

@@ -1,6 +1,6 @@
 from . import views
 from django.urls import path
-from .views import create_event, EventList, EventDetail, GuestList 
+from .views import create_event, EventList, EventDetail, GuestList
 from .views import GuestDetail, delete_guest
 
 urlpatterns = [
@@ -11,9 +11,9 @@ urlpatterns = [
         views.EventDetail.as_view(),
         name='edit_event'
         ),
-    path('guestlist/', views.GuestList.as_view(), name='guestlist'),
+    path('guest_list/', views.GuestList.as_view(), name='guest_list'),
     path(
-        'guestlist/<slug:slug>/',
+        'guest_list/<slug:slug>/',
         views.GuestDetail.as_view(),
         name='edit_guest'
         ),

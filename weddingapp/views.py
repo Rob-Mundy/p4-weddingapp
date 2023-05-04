@@ -6,6 +6,7 @@ from .forms import CreateEventForm, EditEventForm, AddGuestForm, EditGuestForm
 from slugify import slugify
 from django.core.exceptions import ValidationError
 from django.db.models import Count
+from django.contrib import messages # this is new code
 
 
 class EventList(generic.ListView):
@@ -32,7 +33,7 @@ class GuestList(generic.View):
 
     def get(self, request, *args, **kwargs):
         user = self.request.user
-        # 404 error if user navigates to guestlist but has no event
+        # 404 error if user navigates to guest list but has no event
         event = get_object_or_404(Event, user=user)
         queryset = Guest.objects.filter(user=user)
         context_object_name = 'guests'
@@ -40,7 +41,7 @@ class GuestList(generic.View):
 
         return render(
             request,
-            "guestlist.html",
+            "guest_list.html",
             {
                 "form": form,
                 "guests": queryset
@@ -49,7 +50,7 @@ class GuestList(generic.View):
 
     def post(self, request, *args, **kwargs):
         user = self.request.user
-        # 404 error if user triest to access events that
+        # 404 error if user tries to access events that
         # belong to other users
         event = get_object_or_404(Event, user=user)
         form = AddGuestForm(data=request.POST, initial={'user': user.id})
@@ -57,7 +58,7 @@ class GuestList(generic.View):
             guest_list = form.save(commit=False)
             guest_list.user = user
             # slug field added based on concatonation of user_id
-            # and guest_name so that guest can be accessed by slug
+            # and guest_name so that each guest can be accessed by slug
             # for editing purposes
             user_slug = slugify(str(guest_list.user.id))
             guest_slug = slugify(str(guest_list.guest_name))
@@ -65,12 +66,19 @@ class GuestList(generic.View):
 
             guest_list.event = event
             guest_list.save()
+            # modal object displaying successful
+            # submission
+            messages.success(
+                request, 'Your guest has been added successfully'
+                )
             form.save(commit=True)
-            return redirect("guestlist")
+            return redirect("guest_list")
+        else:
+            messages.error(request, 'Invalid form submission')
 
         return render(
             request,
-            "guestlist.html",
+            "guest_list.html",
             {
                 "form": form,
             }
@@ -101,7 +109,14 @@ class GuestDetail(generic.View):
         form = EditGuestForm(data=request.POST, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect("guestlist")
+            # modal object displaying successful
+            # submission
+            messages.success(
+                request, 'Your guest has been updated successfully'
+                )
+            return redirect("guest_list")
+        else:
+            messages.error(request, 'Invalid form submission')
 
         return render(
             request,
@@ -117,7 +132,12 @@ def delete_guest(request, pk):
     queryset = Guest.objects.get(id=pk)
     if request.method == 'POST':
         queryset.delete()
-        return redirect("guestlist")
+        # modal object displaying successful
+        # guest deletion
+        messages.success(
+            request, 'Your guest has been deleted successfully'
+            )
+        return redirect("guest_list")
     return render(request, 'delete_guest.html')
 
 
@@ -130,7 +150,14 @@ def create_event(request):
             event_list.user = request.user
             event_list.save()
             form.save(commit=True)
+            # modal object displaying successful
+            # submission
+            messages.success(
+                request, 'Your event has been created successfully'
+                )
             return redirect('/')
+        else:
+            messages.error(request, 'Invalid form submission')
     else:
         form = CreateEventForm()
     return render(request, 'create_event.html', {'form': form})
@@ -160,7 +187,14 @@ class EventDetail(generic.UpdateView):
         form = EditEventForm(request.POST or None, instance=instance)
         if form.is_valid():
             form.save()
+            # modal object displaying successful
+            # submission
+            messages.success(
+                request, 'Your event has been updated successfully'
+                )
             return redirect("/")
+        else:
+            messages.error(request, 'Invalid form submission')
 
         return render(
             request,

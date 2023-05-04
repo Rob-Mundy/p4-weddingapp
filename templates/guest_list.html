@@ -13,7 +13,7 @@
                 <div class="row white">
                     <div class="columns large-12">
 
-                        <form method="POST" id="add-guest-form" action="{% url 'guestlist' %}">
+                        <form method="POST" id="add-guest-form" action="{% url 'guest_list' %}">
                             {% csrf_token %}
                             <div class="fieldWrapper" id="the_guest">
                                 {{ form | crispy }}
@@ -34,7 +34,7 @@
             <!-- Guest Column -->
             {% if guests %}
             <div class="list-group w-auto" style="min-width: 200px">
-                <h3 class="text-center">Guestlist</h3>
+                <h3 class="text-center">Guest List</h3>
                 <hr class="mt-0">
                 <ul id="talk">
                     {% for guest in guests %}
