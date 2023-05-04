@@ -23,8 +23,9 @@ class EventList(generic.ListView):
         user = self.request.user
         context = super(EventList, self).get_context_data(*args, **kwargs)
         if user.is_authenticated:
-            # filters event objects by user and counts guests
+            # filters event objects by user
             event_stats = Event.objects.filter(user=user)
+            # Add count of guests to context
             context['event_stats'] = event_stats.aggregate(Count('guests'))
             return context
 
@@ -44,7 +45,8 @@ class GuestList(generic.View):
             "guest_list.html",
             {
                 "form": form,
-                "guests": queryset
+                "guests": queryset,
+                "nbar": "guest_list",
             }
         )
 
@@ -81,6 +83,7 @@ class GuestList(generic.View):
             "guest_list.html",
             {
                 "form": form,
+                "nbar": "guest_list",
             }
         )
 
@@ -99,6 +102,7 @@ class GuestDetail(generic.View):
             {
                 "instance": instance,
                 "form": form,
+                "nbar": "guest_list",
             }
         )
 
@@ -123,7 +127,8 @@ class GuestDetail(generic.View):
             "edit_guest.html",
             {
                 "instance": instance,
-                "form": form
+                "form": form,
+                "nbar": "guest_list",
             }
         )
 
@@ -138,7 +143,13 @@ def delete_guest(request, pk):
             request, 'Your guest has been deleted successfully'
             )
         return redirect("guest_list")
-    return render(request, 'delete_guest.html')
+    return render(
+        request,
+        'delete_guest.html',
+        {
+            "nbar": "guest_list",
+        }
+    )
 
 
 def create_event(request):
@@ -160,7 +171,9 @@ def create_event(request):
             messages.error(request, 'Invalid form submission')
     else:
         form = CreateEventForm()
-    return render(request, 'create_event.html', {'form': form})
+    return render(
+        request,
+        "create_event.html", {'form': form})
 
 
 class EventDetail(generic.UpdateView):

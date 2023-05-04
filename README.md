@@ -334,6 +334,7 @@ Returning Users
     + The first time authenticated user can navigate to the event creation page via the "Create Event" button on the homepage.  The user is then presented with a simple form requesting that they enter the Event name, Event date and Event time.
     ![Create Event](/static/images/create_event_form.png)
     + Form validation via Crispy Forms ensures all fields are populated and adhere to the Event model's specifications (see [Full Testing](#full-testing) for details).
+    + A modal will appear at the top of the screen displaying a message (success or otherwise).
     + If a user attempts to create a second event by manually adding '/create_event/' to the site's url they are presented with a message stating that their "..event has already been created".  A "Back" button reroutes the user to the homepage.
     [Event already created message](/static/images/event_already_created_message.png)
   + USER STORY: Edit Wedding Event - As a **Site User** I can **edit an event** so that **I can correct mistakes or accommdate changes**
@@ -342,8 +343,10 @@ Returning Users
     + The user is available to amend the Event name, Event date and Event time.
     + Crispy Forms handles the form validation and ensures adherence with the Event model's specifications (see [Testing](#testing) for details).
     + Upon submitting the form, the user is redirected to the homepage which now displays their amended event information.
+    + A modal will appear at the top of the screen displaying a message (success or otherwise).
   + USER STORY: Add Guests - As a **Site User** I can **add guests** so that **I can build a list of potential attendees**
     + When authenticated, and having created a wedding event, site users can easily add guests via the Add Guest form on the Guest list page (see [Features](#features) for details).
+    + Upon subimssion, a modal will appear at the top of the screen displaying a message (success or otherwise).
     + Hyperlinks to the Guest list are found multiple locations. They are located in buttons on the homepage (Attendees card) as well the navbar.
     + Future iterations could allow the user to export the guest list to a spreadsheet. 
   + USER STORY: Edit Guests - As a **Site User** I can **edit guests** so that **I can make alterations to a list of potential attendees**
@@ -352,11 +355,13 @@ Returning Users
     + The [Edit Guest form](/static/images/edit_guest_form.png) displays guest details and their event preferences.
     + Crispy Forms handles the data validation to ensure compliance with the model's specifications (see [Full Testing](#full-testing) for details).
     + On submission, users are navigated back to the Guest list page.
+    + A modal will appear at the top of the screen displaying a message (success or otherwise).
   + USER STORY: Delete Guests - As a **Site User** I can **delete guests** so that **I can correct mistakes in a list of potential attendees**
     + Sites users are able to delete guests via the Edit Guest form detailed above.
     + To avoid any accidental guest deletions, users are presented with a screen asking "Are you sure you want to delete guest?"
     [Delete guest message](/static/images/delete_guest_prompt.png)
-    + Upon confirmation of request to delete, users are redirected to the Guest list page where their deleted guest will no longer exits.
+    + Upon confirmation of request to delete, users are redirected to the Guest list page where their deleted guest will no longer exist.  
+    + A modal will appear at the top of the screen displaying a message (success or otherwise).
 
 ### Lighthouse
 
@@ -401,13 +406,11 @@ I opted to utilize Crispy Forms for its powerful form validation features. I tho
 4. Add guest form
 
     + [add guest form validation: empty guest name](/static/images/add_guest_form_validation_empty_guest_name.png)
-
     + [add guest form validation: duplicate guest name](/static/images/add_guest_form_guest_duplication_prompt.png)
 
 5. Edit guest form
 
     + [edit guest form validation: email doesn't conform](/static/images/edit_guest_form_validation_email.png)
-
     + [edit guest form validation: dietary requirements missing](/static/images/edit_guest_form_validation_dietary_requirements.png)
 
 - - -
@@ -415,6 +418,10 @@ I opted to utilize Crispy Forms for its powerful form validation features. I tho
 ## Credits
 
 ### Code Used
+
++ The code for the form submission modals was sourced from this [stackoverflow.com](https://stackoverflow.com/questions/60606018/django-pop-up-message-modal-after-the-user-updating-form) article.
+
++ The two methods of underlining active nav elements were sourced from [stackoverflow.com](https://stackoverflow.com/questions/25044370/make-clicked-tab-active-in-bootstrap).
 
 + [djangoproject] https://www.djangoproject.com/ was leant on heavily for instructions on how to structure code.
 

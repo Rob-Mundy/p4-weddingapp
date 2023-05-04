@@ -39,25 +39,37 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                        <a class="{% if request.resolver_match.url_name == 'home' %}nav-link active{% else %}nav-link{% endif %}" 
+                        aria-current="{% if request.resolver_match.url_name == 'home' %}page{% endif %}"
+                        href="{% url 'home' %}">Home</a>
                     </li>
                     {% if not user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
+                        <a class="{% if request.resolver_match.url_name == 'account_signup' %}nav-link active{% else %}nav-link{% endif %}" 
+                        aria-current="{% if request.resolver_match.url_name == 'account_signup' %}page{% endif %}"
+                        href="{% url 'account_signup' %}">Sign Up</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_login' %}">Log In</a>
+                        <a class="{% if request.resolver_match.url_name == 'account_login' %}nav-link active{% else %}nav-link{% endif %}" 
+                        aria-current="{% if request.resolver_match.url_name == 'account_login' %}page{% endif %}"
+                        href="{% url 'account_login' %}">Log In</a>
                     </li>
                     {% elif user.events %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'guest_list' %}">Guest List</a>
+                        <a class="{% if nbar == 'guest_list' %}nav-link active{% else %}nav-link{% endif %}" 
+                        aria-current="{% if nbar == 'guest_list' %}page{% endif %}"
+                        href="{% url 'guest_list' %}">Guest List</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_logout' %}">Log Out ({{request.user.username}})</a>
+                        <a class="{% if request.resolver_match.url_name == 'account_logout' %}nav-link active{% else %}nav-link{% endif %}" 
+                        aria-current="{% if request.resolver_match.url_name == 'account_logout' %}page{% endif %}" 
+                        href="{% url 'account_logout' %}">Log Out ({{request.user.username}})</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_logout' %}">Log Out ({{request.user.username}})</a>
+                        <a class="{% if request.resolver_match.url_name == 'account_logout' %}nav-link active{% else %}nav-link{% endif %}" 
+                        aria-current="{% if request.resolver_match.url_name == 'account_logout' %}page{% endif %}" 
+                        href="{% url 'account_logout' %}">Log Out ({{request.user.username}})</a>
                     </li>
                     {% endif %}
                 </ul>
